@@ -1,0 +1,16 @@
+.chatroom-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    width: 100vw;
+}
+
+.chatroom {
+    border: 1px solid black;
+
+    height: 600px;
+    width: 800px;
+
+}
