@@ -18,14 +18,17 @@ func Register(c *fiber.Ctx) error {
 	input := &RegisterInput{}
 
 	if err := c.BodyParser(input); err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"message": err.Error(),
-		})
+		return utils.ErrorHandler(c, err)
 	}
 
 	errors := utils.ValidateInput(input)
 	if errors != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(errors)
+		return c.Status(fiber.StatusBadRequest).JSON(utils.Response{
+			Success: false,
+			Code:    fiber.StatusBadRequest,
+			Message: "the username or password violates some constraints",
+			Data:    errors,
+		})
 	}
 
 	user := &models.User{
@@ -34,10 +37,13 @@ func Register(c *fiber.Ctx) error {
 	}
 	user, err := models.CreateNewUser(user)
 	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"message": err.Error(),
-		})
+		return utils.ErrorHandler(c, err)
 	}
 
-	return c.JSON(user)
+	return c.JSON(utils.Response{
+		Success: true,
+		Code:    fiber.StatusOK,
+		Message: "registration success",
+		Data:    user,
+	})
 }

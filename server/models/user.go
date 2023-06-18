@@ -2,6 +2,7 @@ package models
 
 import (
 	"html"
+	"strconv"
 	"strings"
 
 	"golang.org/x/crypto/bcrypt"
@@ -10,9 +11,14 @@ import (
 
 var db *gorm.DB
 
+// Each user is assigned a unique ChatID,
+// and the ChatID is increased by 1 each time.
+var chatID int = 100000
+
 type User struct {
 	gorm.Model
-	Username string `json:"username" gorm:"size:30;unique;not null"`
+	ChatID   string `json:"chat_id" gorm:"unique;not null"`
+	Username string `json:"username" gorm:"size:30;not null"`
 	Password string `json:"password" gorm:"size:255;not null"`
 	Friends  []User `json:"friends" gorm:"many2many:user_friends"`
 }
@@ -31,9 +37,9 @@ func (u *User) BeforeCreate(tx *gorm.DB) error {
 		return err
 	}
 
-	u.Password = string(hashedPassword)
-
+	u.ChatID = strconv.Itoa(chatID)
 	u.Username = html.EscapeString(strings.TrimSpace(u.Username))
+	u.Password = string(hashedPassword)
 
 	return nil
 }
@@ -44,6 +50,9 @@ func CreateNewUser(u *User) (*User, error) {
 	if err != nil {
 		return &User{}, err
 	}
+
+	// If a new user is created successfully, then increase the chatID.
+	chatID++
 
 	return u, nil
 }
@@ -63,11 +72,23 @@ func GetUsersByPattern(s string) ([]User, error) {
 	return users, nil
 }
 
-// GetUserByUsername finds a user by the unique username.
-func GetUserByUsername(username string) (*User, error) {
+// GetUserByID finds a user by ID(not ChatID).
+func GetUserByID(id uint) (*User, error) {
 	user := &User{}
 
-	err := db.Where("username = ?", username).First(user).Error
+	err := db.First(user, id).Error
+	if err != nil {
+		return &User{}, err
+	}
+
+	return user, nil
+}
+
+// GetUserByChatID finds a user by ChatID.
+func GetUserByChatID(chatID string) (*User, error) {
+	user := &User{}
+
+	err := db.Where("chat_id = ?", chatID).First(user).Error
 	if err != nil {
 		return &User{}, err
 	}

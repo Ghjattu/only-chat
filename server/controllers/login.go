@@ -7,8 +7,8 @@ import (
 )
 
 type LoginInput struct {
-	Username string `validate:"required,max=30"`
-	Password string `validate:"required"`
+	ChatID   string `validate:"required,max=10"`
+	Password string `validate:"required,max=16"`
 }
 
 // Login is a handler for the login endpoint, it will receive a username and password,
@@ -18,31 +18,33 @@ func Login(c *fiber.Ctx) error {
 	input := &LoginInput{}
 
 	if err := c.BodyParser(input); err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": err.Error(),
-		})
+		return utils.ErrorHandler(c, err)
 	}
 
 	errors := utils.ValidateInput(input)
 	if errors != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(errors)
+		return c.Status(fiber.StatusBadRequest).JSON(utils.Response{
+			Success: false,
+			Code:    fiber.StatusBadRequest,
+			Message: "the chat id or password violates some constraints",
+			Data:    errors,
+		})
 	}
 
-	id, err := utils.ValidateLogin(input.Username, input.Password)
+	id, err := utils.ValidateLogin(input.ChatID, input.Password)
 	if err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": err.Error(),
-		})
+		return utils.ErrorHandler(c, err)
 	}
 
 	token, err := utils.GenerateToken(id)
 	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": err.Error(),
-		})
+		return utils.ErrorHandler(c, err)
 	}
 
-	return c.JSON(fiber.Map{
-		"token": token,
+	return c.JSON(utils.Response{
+		Success: true,
+		Code:    fiber.StatusOK,
+		Message: "login success",
+		Data:    token,
 	})
 }
