@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-const BasicTabs = () => {
+const WelcomeTabs = () => {
 	const [value, setValue] = useState(0);
 
 	const handleChange = (event, newValue) => {
@@ -29,7 +29,7 @@ const BasicTabs = () => {
 	);
 };
 
-export default BasicTabs;
+export default WelcomeTabs;
 
 const TabPanel = (props) => {
 	const { children, value, index, ...other } = props;
