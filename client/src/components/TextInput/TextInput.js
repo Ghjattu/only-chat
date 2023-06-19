@@ -7,7 +7,7 @@ const TextInput = ({ label, ...props }) => {
 	return (
 		<div>
 			<label htmlFor={props.id}>{label}</label>
-			<input className='' {...field} {...props} />
+			<input className='' autoComplete='on' {...field} {...props} />
 			{meta.touched && meta.error && <p>{meta.error}</p>}
 		</div>
 	);
