@@ -1,14 +1,12 @@
 import React from 'react';
 import './App.css';
-import RegisterForm from './components/RegisterForm/RegisterForm';
-import LoginForm from './components/LoginForm/LoginForm';
+import WelcomeTabs from './components/WelcomeTabs/WelcomeTabs';
 
 const App = () => {
 	return (
-		<div className='chatroom-container'>
-			<div className='chatroom'>
-				<RegisterForm/>
-				<LoginForm/>   
+		<div className='app-wrapper'>
+			<div className='app'>
+				<WelcomeTabs/>
 			</div>
 		</div>
 	);

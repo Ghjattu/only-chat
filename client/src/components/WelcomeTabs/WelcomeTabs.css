@@ -1,0 +1,59 @@
+.tabs-wrapper {
+    padding: .5em;
+    width: 400px;
+}
+
+.tabs-selector {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.tabs-selector-attribute {
+    position: relative;
+
+    margin: 0 .5em;
+    padding: .5em;
+
+    font-size: .9rem;
+    font-weight: 600;
+
+    opacity: .4;
+
+    cursor: pointer;
+
+    transition: all .5s ease;
+}
+
+.tabs-selector-attribute::after {
+    content: '';
+
+    position: absolute;
+    left: .5em;
+    bottom: 0;
+
+    height: 0;
+    width: 0;
+
+    transition: all .5s ease;
+}
+
+.tabs-selector-attribute.active {
+    opacity: .85;
+}
+
+.tabs-selector-attribute.active::after {
+    content: '';
+
+    position: absolute;
+    left: .5em;
+    bottom: 0;
+
+    height: 2px;
+    width: 2em;
+
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.tabs-panels {
+    margin: 2em 0 0;
+}

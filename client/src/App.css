@@ -1,16 +1,26 @@
-.chatroom-container {
+.app-wrapper {
+    --white: rgba(255, 255, 255, 0.3);
+}
+
+.app-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
 
     height: 100vh;
     width: 100vw;
+
+    background: linear-gradient(45deg, #FFECEC, #FF78C4);
 }
 
-.chatroom {
-    border: 1px solid black;
+.app {
+    border-radius: 20px;
+    border-top: 1px solid var(--white);
+    border-left: 1px solid var(--white);
+    padding: 2em 1.2em;
 
-    height: 600px;
-    width: 800px;
+    background: var(--white);
+    backdrop-filter: blur(10px);
 
+    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
 }

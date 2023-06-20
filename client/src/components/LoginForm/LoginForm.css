@@ -1,0 +1,15 @@
+.login-form-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1em .5em;
+}
+
+.login-form-title {
+    margin: 0 0 .9em;
+
+    font-size: 1.8rem;
+    font-weight: 500;
+
+    opacity: .8;
+}
