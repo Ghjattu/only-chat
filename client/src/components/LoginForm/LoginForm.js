@@ -3,6 +3,7 @@ import './LoginForm.css';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import TextInput from '../TextInput/TextInput';
+import Button from '../Button/Button';
 import userControllers from '../../controllers/user';
 
 const initialValues = {
@@ -13,27 +14,26 @@ const initialValues = {
 const validationSchema = yup.object({
 	chatid: yup.string()
 		.max(10, 'The Chat ID is too long.')
-		.required('Required'),
+		.required('Required.'),
 	password: yup.string()
-		.min(6, 'The password should not be less than 6 characters.')
-		.max(16, 'The password should not exceed 16 characters.')
+		.min(6, 'Should not be less than 6 characters.')
+		.max(16, 'Should not exceed 16 characters.')
 		.required('Required.'),
 });
 
 const handleSubmit = async (values) => {
 	await userControllers.login(values);
-	console.log(values);
 };
 
 const LoginForm = () => {
 	return (
-		<div>
-			<h1>Login</h1>
+		<div className='login-form-wrapper'>
+			<h1 className='login-form-title'>Welcome Back!</h1>
 			<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-				<Form>
-					<TextInput label='Chat ID' id='chatid' name='chatid' type='text' />
-					<TextInput label='Password' id='password' name='password' type='password' />
-					<button type='submit'>Login</button>
+				<Form className='login-form'>
+					<TextInput label='Chat ID' id='chatid' name='chatid' type='text' placeholder='Enter your Chat ID' />
+					<TextInput label='Password' id='password' name='password' type='password' placeholder='6 to 16 characters' />
+					<Button label='Login'/>
 				</Form>
 			</Formik>
 		</div>

@@ -4,11 +4,17 @@ import './TextInput.css';
 
 const TextInput = ({ label, ...props }) => {
 	const [field, meta] = useField(props);
+
 	return (
-		<div>
-			<label htmlFor={props.id}>{label}</label>
-			<input className='' autoComplete='on' {...field} {...props} />
-			{meta.touched && meta.error && <p>{meta.error}</p>}
+		<div className='text-input-wrapper'>
+			<div className='text-input-label'>
+				<label htmlFor={props.id}>{label}</label>
+			</div>
+			<input className='text-input' autoComplete='on' {...field} {...props} />
+			<div className='text-input-notification'>
+				{meta.touched && meta.error ? 
+					<p>{meta.error}</p> : <p></p>}
+			</div>
 		</div>
 	);
 };

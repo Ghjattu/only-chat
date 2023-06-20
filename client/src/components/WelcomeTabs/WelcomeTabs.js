@@ -1,30 +1,36 @@
 import React, { useState } from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import './WelcomeTabs.css';
 import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-const WelcomeTabs = () => {
-	const [value, setValue] = useState(0);
 
-	const handleChange = (event, newValue) => {
-		setValue(newValue);
+const WelcomeTabs = () => { 
+	const [tabIndex, setTabIndex] = useState(0);
+
+	const handleClick = (index) => { 
+		setTabIndex(index);
+
+		const attributes = document.querySelectorAll('.tabs-selector-attribute');
+		for (let i = 0; i < attributes.length; i++) {
+			attributes[i].classList.remove('active');
+		}
+		attributes[index].classList.add('active');
 	};
 
 	return (
-		<div>
-			<div>
-				<Tabs value={value} onChange={handleChange}>
-					<Tab label='Login'/>
-					<Tab label='Register'/>
-				</Tabs>
+		<div className='tabs-wrapper'>
+			<div className='tabs-selector'>
+				<span className='tabs-selector-attribute active' onClick={() => handleClick(0)}>Login</span>
+				<span className='tabs-selector-attribute' onClick={() => handleClick(1)}>Sign Up</span>
 			</div>
-			<TabPanel value={value} index={0}>
-				<LoginForm/>
-			</TabPanel>
-			<TabPanel value={value} index={1}>
-				<RegisterForm/>
-			</TabPanel>
+			<div className='tabs-panels'>
+				<TabPanel tabIndex={tabIndex} index={0}>
+					<LoginForm/>
+				</TabPanel>
+				<TabPanel tabIndex={tabIndex} index={1}>
+					<RegisterForm/>
+				</TabPanel>
+			</div>
 		</div>
 	);
 };
@@ -32,11 +38,11 @@ const WelcomeTabs = () => {
 export default WelcomeTabs;
 
 const TabPanel = (props) => {
-	const { children, value, index, ...other } = props;
+	const { children, tabIndex, index, ...other } = props;
 
 	return (
-		<div hidden={value !== index} {...other}>
-			{value === index && <div>{children}</div>}
+		<div hidden={tabIndex !== index} {...other}>
+			{tabIndex === index && <div>{children}</div>}
 		</div>
 	);
 };

@@ -4,8 +4,8 @@ import WelcomeTabs from './components/WelcomeTabs/WelcomeTabs';
 
 const App = () => {
 	return (
-		<div className='chatroom-container'>
-			<div className='chatroom'>
+		<div className='app-wrapper'>
+			<div className='app'>
 				<WelcomeTabs/>
 			</div>
 		</div>
