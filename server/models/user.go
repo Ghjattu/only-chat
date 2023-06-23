@@ -9,8 +9,6 @@ import (
 	"gorm.io/gorm"
 )
 
-var db *gorm.DB
-
 // Each user is assigned a unique ChatID,
 // and the ChatID is increased by 1 each time.
 var chatID int = 100000
@@ -21,12 +19,6 @@ type User struct {
 	Username string `json:"username" gorm:"size:30;not null"`
 	Password string `json:"password" gorm:"size:255;not null"`
 	Friends  []User `json:"friends" gorm:"many2many:user_friends"`
-}
-
-// UserSetup retrieves the database instance from config/db.go
-// and saves it in user.go
-func UserSetup(d *gorm.DB) {
-	db = d
 }
 
 // BeforeCreate is a gorm hook that hashes user's password
