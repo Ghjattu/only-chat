@@ -20,6 +20,8 @@ type User struct {
 	Password string `json:"password" gorm:"size:255;not null"`
 }
 
+// APIUser contains the data returned by the server to the client,
+// it omits the user's password.
 type APIUser struct {
 	ID       uint   `json:"id"`
 	ChatID   string `json:"chatid"`
@@ -42,8 +44,12 @@ func (u *User) BeforeCreate(tx *gorm.DB) error {
 }
 
 // CreateNewUser creates a new user.
-func CreateNewUser(u *User) (*APIUser, error) {
-	err := db.Create(u).Error
+//
+//	@param user User
+//	@return *APIUser
+//	@return error
+func CreateNewUser(user *User) (*APIUser, error) {
+	err := db.Create(user).Error
 	if err != nil {
 		return &APIUser{}, err
 	}
@@ -52,17 +58,21 @@ func CreateNewUser(u *User) (*APIUser, error) {
 	chatID++
 
 	returnedUser := &APIUser{
-		ID:       u.ID,
-		ChatID:   u.ChatID,
-		Username: u.Username,
+		ID:       user.ID,
+		ChatID:   user.ChatID,
+		Username: user.Username,
 	}
 
 	return returnedUser, nil
 }
 
-// GetUsersByUsername retrieves all users whose username
+// GetUsersByPattern retrieves all users whose username
 // matches the specified pattern "%s%".
 // Here, the "%" is a wild card which represents zero, one or multiple characters.
+//
+//	@param s string
+//	@return []APIUser
+//	@return error
 func GetUsersByPattern(s string) ([]APIUser, error) {
 	pattern := "%" + s + "%"
 	users := make([]APIUser, 0)
@@ -76,18 +86,28 @@ func GetUsersByPattern(s string) ([]APIUser, error) {
 }
 
 // GetUserByID finds a user by ID(not ChatID).
-func GetUserByID(id uint) (*User, error) {
-	user := &User{}
+//
+//	@param id uint
+//	@return *User
+//	@return error
+func GetUserByID(id uint) (*APIUser, error) {
+	user := &APIUser{}
 
-	err := db.First(user, id).Error
+	err := db.Model(&User{}).Where("id = ?", id).First(user).Error
 	if err != nil {
-		return &User{}, err
+		return &APIUser{}, err
 	}
 
 	return user, nil
 }
 
-// GetUserByChatID finds a user by ChatID.
+// GetUserByChatID retrieves a user by ChatID.
+//
+//	@param chatID       string
+//	@param omitPassword bool "if omitPassword is true, the function will not return user's password"
+//	@return *APIUser
+//	@return string "if omitPassword is false, this field will store the user's password"
+//	@return error
 func GetUserByChatID(chatID string, omitPassword bool) (*APIUser, string, error) {
 	user := &User{}
 
