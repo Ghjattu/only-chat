@@ -35,7 +35,7 @@ func Register(c *fiber.Ctx) error {
 		Username: input.Username,
 		Password: input.Password,
 	}
-	user, err := models.CreateNewUser(user)
+	returnedUser, err := models.CreateNewUser(user)
 	if err != nil {
 		return utils.ErrorHandler(c, err)
 	}
@@ -44,6 +44,6 @@ func Register(c *fiber.Ctx) error {
 		Success: true,
 		Code:    fiber.StatusOK,
 		Message: "registration success",
-		Data:    user,
+		Data:    returnedUser,
 	})
 }
