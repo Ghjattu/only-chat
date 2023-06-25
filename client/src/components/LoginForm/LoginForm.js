@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './LoginForm.css';
 import { Form, Formik } from 'formik';
+import Alert from '@mui/material/Alert';
 import * as yup from 'yup';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
@@ -21,13 +22,26 @@ const validationSchema = yup.object({
 		.required('Required.'),
 });
 
-const handleSubmit = async (values) => {
-	await userControllers.login(values);
-};
+const LoginForm = (props) => {
+	const { handleLogin } = props;
+	const [errorMessage, setErrorMessage] = useState('');
 
-const LoginForm = () => {
+	const handleSubmit = async (values) => {
+		const res = await userControllers.login(values);
+		console.log(res);
+		if (res.code === 401) {
+			setErrorMessage('Password is incorrect');
+			setTimeout(() => setErrorMessage(''), 3000);
+		} else if (res.code == 500) {
+			setErrorMessage('Some errors occurred, please try again');
+		} else {
+			handleLogin(res.data);
+		}
+	};
+
 	return (
 		<div className='login-form-wrapper'>
+			{errorMessage && <Alert severity='error' variant='filled' className='error-message'>{errorMessage}</Alert>}
 			<h1 className='login-form-title'>Welcome Back!</h1>
 			<Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
 				<Form className='login-form'>

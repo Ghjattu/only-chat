@@ -4,7 +4,8 @@ import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 
-const WelcomeTabs = () => { 
+const WelcomeTabs = (props) => { 
+	const { handleLogin } = props;
 	const [tabIndex, setTabIndex] = useState(0);
 
 	const handleClick = (index) => { 
@@ -25,7 +26,7 @@ const WelcomeTabs = () => {
 			</div>
 			<div className='tabs-panels'>
 				<TabPanel tabIndex={tabIndex} index={0}>
-					<LoginForm/>
+					<LoginForm handleLogin={handleLogin}/>
 				</TabPanel>
 				<TabPanel tabIndex={tabIndex} index={1}>
 					<RegisterForm/>
