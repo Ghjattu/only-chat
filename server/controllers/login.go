@@ -31,12 +31,12 @@ func Login(c *fiber.Ctx) error {
 		})
 	}
 
-	id, err := utils.ValidateLogin(input.ChatID, input.Password)
+	user, err := utils.ValidateLogin(input.ChatID, input.Password)
 	if err != nil {
 		return utils.ErrorHandler(c, err)
 	}
 
-	token, err := utils.GenerateToken(id)
+	token, err := utils.GenerateToken(user.ID)
 	if err != nil {
 		return utils.ErrorHandler(c, err)
 	}
@@ -45,6 +45,9 @@ func Login(c *fiber.Ctx) error {
 		Success: true,
 		Code:    fiber.StatusOK,
 		Message: "login success",
-		Data:    token,
+		Data: fiber.Map{
+			"user":  user,
+			"token": token,
+		},
 	})
 }
