@@ -15,6 +15,9 @@ type Message struct {
 }
 
 // CreateNewMessage creates a new Message.
+//
+//	@param m *Message
+//	@return error
 func CreateNewMessage(m *Message) error {
 	err := db.Create(m).Error
 	return err
