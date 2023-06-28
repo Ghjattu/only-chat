@@ -11,11 +11,13 @@ const App = () => {
 	useEffect(() => {
 		const stringifyUser = window.localStorage.getItem('user');
 		const token = window.localStorage.getItem('token');
-        
+
 		if (stringifyUser) {
 			setUser(JSON.parse(stringifyUser));
 			setToken(token);
 		}
+
+		websocket.connect(user.id, user.chatid, user.username);
 	}, []);
 
 	const handleLogin = ({ user, token }) => { 
