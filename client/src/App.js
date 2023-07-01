@@ -40,7 +40,7 @@ const App = () => {
 	return (
 		<div className='app-wrapper'>
 			<div className='app'>
-				{user !== null ? <ChatDashboard/> : <WelcomeTabs handleLogin={handleLogin}/>}
+				{user !== null ? <ChatDashboard user={user}/> : <WelcomeTabs handleLogin={handleLogin}/>}
 			</div>
 		</div>
 	);
