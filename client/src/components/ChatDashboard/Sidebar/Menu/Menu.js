@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Menu.css';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -42,7 +42,7 @@ const Menu = () => {
 			</div>
 			<div className='sidebar-menu-item' onClick={() => handleClick(1)}>
 				<ThemeProvider theme={theme}>
-					<PeopleAltOutlinedIcon color={tabIndex === 1 ? 'primary' : 'secondary'} fontSize='20'/>
+					<PersonOutlineOutlinedIcon color={tabIndex === 1 ? 'primary' : 'secondary'} fontSize='20'/>
 				</ThemeProvider>
 				<p>friends</p>
 			</div>
