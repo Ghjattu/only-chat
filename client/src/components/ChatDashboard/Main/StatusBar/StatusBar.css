@@ -1,0 +1,10 @@
+.statusbar-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    padding: .5em 1em;
+}
+
+.statusbar-wrapper>.badge {
+    cursor: pointer;
+}

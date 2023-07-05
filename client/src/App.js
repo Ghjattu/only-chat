@@ -1,21 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import WelcomeTabs from './components/WelcomeTabs/WelcomeTabs';
+import websocket from './controllers/ws';
+import ChatDashboard from './components/ChatDashboard/ChatDashboard';
 
 const App = () => {
+	let hasConnected = false;
+
 	const [user, setUser] = useState(null);
 	// eslint-disable-next-line no-unused-vars
 	const [token, setToken] = useState('');
 
-	const handleLogin = (data) => { 
-		setUser(data.user);
-		setToken(data.token);
+	useEffect(() => {
+		const stringifyUser = window.localStorage.getItem('user');
+		const token = window.localStorage.getItem('token');
+
+		if (stringifyUser) {
+			const user = JSON.parse(stringifyUser);
+			setUser(user);
+			setToken(token);
+
+			if (!hasConnected) {
+				hasConnected = true;
+				websocket.connect(user.id, user.chatid, user.username);
+			}
+		}
+	}, []);
+
+	const handleLogin = ({ user, token }) => { 
+		setUser(user);
+		setToken(token);
+
+		window.localStorage.setItem('user', JSON.stringify(user));
+		window.localStorage.setItem('token', token);
+
+		websocket.connect(user.id, user.chatid, user.username);
 	};
 
 	return (
 		<div className='app-wrapper'>
 			<div className='app'>
-				{user ? <p>Hello</p> : <WelcomeTabs handleLogin={handleLogin}/>}
+				{user !== null ? <ChatDashboard user={user}/> : <WelcomeTabs handleLogin={handleLogin}/>}
 			</div>
 		</div>
 	);
