@@ -22,7 +22,7 @@ func init() {
 	go hub.Start()
 }
 
-// WebSocketHandler handles the websocket connection.
+// WebSocketHandler handles websocket connection requests.
 var WebSocketHandler = websocket.New(func(c *websocket.Conn) {
 	defer func() {
 		c.Close()
