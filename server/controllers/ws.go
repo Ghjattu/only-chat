@@ -32,8 +32,13 @@ var WebSocketHandler = websocket.New(func(c *websocket.Conn) {
 	id, err := strconv.Atoi(c.Params("id"))
 	chatid := c.Params("chatid")
 	username := c.Params("username")
-
 	if err != nil {
+		return
+	}
+
+	// If this chatid has already established a websocket connection,
+	// reject this connection request.
+	if hub.CheckConnExist(chatid) {
 		return
 	}
 
