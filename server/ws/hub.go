@@ -30,6 +30,21 @@ func NewHub(size int) *Hub {
 	return hub
 }
 
+// CheckConnExist checks whether a chatid has established a websocket connection.
+//
+//	@receiver hub
+//	@param chatid string
+//	@return bool
+func (hub *Hub) CheckConnExist(chatid string) bool {
+	for c := range hub.OnlineClients {
+		if c.ChatID == chatid {
+			return true
+		}
+	}
+
+	return false
+}
+
 // Start constantly listens for anything passed to any of Hub's channels
 // and then, if anything is received into one of these channels, it’ll act accordingly.
 //
