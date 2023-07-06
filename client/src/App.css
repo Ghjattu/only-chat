@@ -19,7 +19,7 @@
 
     border-radius: 20px;
     border-top: 1px solid var(--white);
-    border-left: 1px solid var(--white);
+    /* border-left: 1px solid var(--white); */
 
     background: var(--white);
     backdrop-filter: blur(10px);
