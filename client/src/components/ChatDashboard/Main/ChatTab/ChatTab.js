@@ -1,11 +1,12 @@
 import React from 'react';
 import './ChatTab.css';
 import ChatList from './ChatList/ChatList';
+import TabTitle from '../TabTitle/TabTitle';
 
 const ChatTab = () => {
 	return (
 		<div className='chat-tab-wrapper'>
-			<h1 className='chat-tab-title'>chat</h1>
+			<TabTitle title='chat'/>
 			<div className='chat-tab-content'>
 				<ChatList/>
 			</div>
