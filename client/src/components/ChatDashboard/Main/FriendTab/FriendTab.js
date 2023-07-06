@@ -3,9 +3,11 @@ import './FriendTab.css';
 import TabTitle from '../TabTitle/TabTitle';
 import FriendList from './FriendList/FriendList';
 import friendControllers from '../../../../controllers/friend';
+import FriendInfo from './FriendInfo/FriendInfo';
 
 const FriendTab = (props) => {
 	const [friendList, setFriendList] = useState([]);
+	const [currentShow, setCurrentShow] = useState(null);
 
 	useEffect(() => {
 		(async () => {
@@ -16,10 +18,15 @@ const FriendTab = (props) => {
 		})();
 	}, []);
 
+	const handleListItemClick = (friend) => { 
+		setCurrentShow(friend);
+	};
+
 	return (
 		<div className='tab friend-tab-wrapper'>
 			<TabTitle title='friend'/>
-			<FriendList friendList={friendList}/>
+			<FriendList friendList={friendList} handleClick={handleListItemClick}/>
+			{currentShow !== null && <FriendInfo friend={currentShow}/>}
 		</div>
 	);
 };
