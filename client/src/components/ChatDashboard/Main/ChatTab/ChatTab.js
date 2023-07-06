@@ -5,7 +5,7 @@ import TabTitle from '../TabTitle/TabTitle';
 
 const ChatTab = () => {
 	return (
-		<div className='chat-tab-wrapper'>
+		<div className='tab active chat-tab-wrapper'>
 			<TabTitle title='chat'/>
 			<div className='chat-tab-content'>
 				<ChatList/>

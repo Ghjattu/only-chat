@@ -17,7 +17,7 @@ const FriendTab = (props) => {
 	}, []);
 
 	return (
-		<div className='friend-tab-wrapper'>
+		<div className='tab friend-tab-wrapper'>
 			<TabTitle title='friend'/>
 			<FriendList friendList={friendList}/>
 		</div>
