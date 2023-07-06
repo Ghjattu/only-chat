@@ -1,6 +1,8 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type Friend struct {
 	gorm.Model
@@ -39,4 +41,33 @@ func AddFriend(id1, id2 uint) error {
 	}
 
 	return nil
+}
+
+// GetAllFriendsByID gets all of the user's friends by user id.
+//
+//	@param id uint
+//	@return []APIUser
+//	@return error
+func GetAllFriendsByID(id uint) ([]APIUser, error) {
+	friendIDs := make([]uint, 0)
+
+	err := db.Model(&Friend{}).Where("user_id = ?", id).Select("friend_id").Find(&friendIDs).Error
+	if err != nil {
+		return []APIUser{}, err
+	}
+
+	friends := make([]APIUser, 0)
+
+	for _, friendID := range friendIDs {
+		friend := &APIUser{}
+
+		err := db.Model(&User{}).Where("id = ?", friendID).First(friend).Error
+		if err != nil {
+			return []APIUser{}, err
+		}
+
+		friends = append(friends, *friend)
+	}
+
+	return friends, nil
 }
