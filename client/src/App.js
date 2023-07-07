@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import WelcomeTabs from './components/WelcomeTabs/WelcomeTabs';
 import websocket from './controllers/ws';
-import ChatDashboard from './components/ChatDashboard/ChatDashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 
 const App = () => {
 	let hasConnected = false;
@@ -40,7 +40,7 @@ const App = () => {
 	return (
 		<div className='app-wrapper'>
 			<div className='app'>
-				{user !== null ? <ChatDashboard user={user}/> : <WelcomeTabs handleLogin={handleLogin}/>}
+				{user !== null ? <Dashboard user={user}/> : <WelcomeTabs handleLogin={handleLogin}/>}
 			</div>
 		</div>
 	);
