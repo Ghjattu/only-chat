@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Main.css';
 import StatusBar from './StatusBar/StatusBar';
 import ChatTab from './ChatTab/ChatTab';
@@ -15,6 +16,11 @@ const Main = (props) => {
 			{tabPanelIndex == 1 && <FriendTab user={props.user}/>}
 		</div>
 	);
+};
+
+Main.propTypes = {
+	user: PropTypes.object.isRequired,
+	tabPanelIndex: PropTypes.number.isRequired,
 };
 
 export default Main;

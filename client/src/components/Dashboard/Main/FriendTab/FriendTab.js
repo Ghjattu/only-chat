@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import './FriendTab.css';
 import TabTitle from '../TabTitle/TabTitle';
 import FriendList from './FriendList/FriendList';
@@ -29,6 +30,10 @@ const FriendTab = ({ user }) => {
 			{currentShow !== null && <FriendInfo friend={currentShow}/>}
 		</div>
 	);
+};
+
+FriendTab.propTypes = {
+	user: PropTypes.object.isRequired,
 };
 
 export default FriendTab;

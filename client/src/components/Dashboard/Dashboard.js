@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './Dashboard.css';
 import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
@@ -16,6 +17,10 @@ const Dashboard = ({ user }) => {
 			<Main user={user} tabPanelIndex={tabPanelIndex} />
 		</div>
 	);
+};
+
+Dashboard.propTypes = {
+	user: PropTypes.object,
 };
 
 export default Dashboard;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './Menu.css';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -55,6 +56,10 @@ const Menu = (props) => {
 			</div>
 		</div>
 	);
+};
+
+Menu.propTypes = {
+	handleTabPanelChange: PropTypes.func.isRequired,
 };
 
 export default Menu;

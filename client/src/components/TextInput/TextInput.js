@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useField } from 'formik';
 import './TextInput.css';
 
@@ -17,6 +18,11 @@ const TextInput = ({ label, ...props }) => {
 			</div>
 		</div>
 	);
+};
+
+TextInput.propTypes = {
+	label: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
 };
 
 export default TextInput;

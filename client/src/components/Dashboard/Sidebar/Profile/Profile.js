@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Profile.css';
 import Avatar from 'boring-avatars';
 
@@ -18,6 +19,12 @@ const Profile = ({ user }) => {
 			</div>
 		</div>
 	);
+};
+
+Profile.propTypes = {
+	user: PropTypes.shape({
+		username: PropTypes.string.isRequired,
+	}),
 };
 
 export default Profile;

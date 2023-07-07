@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './FriendListItem.css';
 import Avatar from 'boring-avatars';
 
@@ -20,6 +21,13 @@ const FriendListItem = (props) => {
 			</li>
 		</div>
 	);
+};
+
+FriendListItem.propTypes = {
+	friend: PropTypes.shape({
+		username: PropTypes.string.isRequired,
+	}),
+	handleClick: PropTypes.func.isRequired,
 };
 
 export default FriendListItem;

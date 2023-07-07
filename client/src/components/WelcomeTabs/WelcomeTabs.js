@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './WelcomeTabs.css';
 import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -36,6 +37,10 @@ const WelcomeTabs = (props) => {
 	);
 };
 
+WelcomeTabs.propTypes = {
+	handleLogin: PropTypes.func.isRequired,
+};
+
 export default WelcomeTabs;
 
 const TabPanel = (props) => {
@@ -46,4 +51,10 @@ const TabPanel = (props) => {
 			{tabIndex === index && <div>{children}</div>}
 		</div>
 	);
+};
+
+TabPanel.propTypes = {
+	children: PropTypes.node,
+	tabIndex: PropTypes.number.isRequired,
+	index: PropTypes.number.isRequired,
 };

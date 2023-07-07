@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './FriendInfo.css';
 import Avatar from 'boring-avatars';
 
@@ -14,6 +15,12 @@ const FriendInfo = (props) => {
 			{props.friend.username}
 		</div>
 	);
+};
+
+FriendInfo.propTypes = {
+	friend: PropTypes.shape({
+		username: PropTypes.string.isRequired,
+	})
 };
 
 export default FriendInfo;
