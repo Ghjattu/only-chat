@@ -4,13 +4,13 @@ import StatusBar from './StatusBar/StatusBar';
 import ChatTab from './ChatTab/ChatTab';
 import FriendTab from './FriendTab/FriendTab';
 
-const Main = () => {
+const Main = ({ user }) => {
 	return (
 		<div className='main-wrapper'>
 			<StatusBar/>
             
 			<ChatTab/>
-			<FriendTab/>
+			<FriendTab user={user}/>
 		</div>
 	);
 };

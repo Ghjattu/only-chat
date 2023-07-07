@@ -5,13 +5,13 @@ import FriendList from './FriendList/FriendList';
 import friendControllers from '../../../../controllers/friend';
 import FriendInfo from './FriendInfo/FriendInfo';
 
-const FriendTab = (props) => {
+const FriendTab = ({ user }) => {
 	const [friendList, setFriendList] = useState([]);
 	const [currentShow, setCurrentShow] = useState(null);
 
 	useEffect(() => {
 		(async () => {
-			const res = await friendControllers.getAllFriend(props.id);
+			const res = await friendControllers.getAllFriend(user.id);
 			if (res.code == 200) {
 				setFriendList(res.data);
 			}
