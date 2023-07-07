@@ -1,0 +1,25 @@
+.search-bar-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar-wrapper>svg {
+    transition: all ease .3s;
+}
+
+.search-bar {
+    border: none;
+    padding: .7em;
+
+    font-size: 1.1rem;
+
+    color: rgba(0, 0, 0, .7);
+    background: transparent;
+
+    outline: none;
+}
+
+.search-bar::placeholder {
+    font-size: .9rem;
+    letter-spacing: .5px;
+}
