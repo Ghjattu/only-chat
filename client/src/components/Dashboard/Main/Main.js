@@ -4,13 +4,15 @@ import StatusBar from './StatusBar/StatusBar';
 import ChatTab from './ChatTab/ChatTab';
 import FriendTab from './FriendTab/FriendTab';
 
-const Main = ({ user }) => {
+const Main = (props) => {
+	const tabPanelIndex = props.tabPanelIndex;
+
 	return (
 		<div className='main-wrapper'>
 			<StatusBar/>
             
-			<ChatTab/>
-			<FriendTab user={user}/>
+			{tabPanelIndex == 0 && <ChatTab/>}
+			{tabPanelIndex == 1 && <FriendTab user={props.user}/>}
 		</div>
 	);
 };
