@@ -36,7 +36,7 @@ const SearchBar = () => {
 			<ThemeProvider theme={theme}>
 				<SearchOutlinedIcon color={iconColor} />
 			</ThemeProvider>
-			<input className='search-bar' type='text' placeholder='Search' value={searchText}
+			<input className='search-bar' type='text' placeholder='Search' value={searchText} id='search'
 				onFocus={handleFocus} onBlur={handleBlur} onChange={handleChange}>
 			</input>
 		</div>
