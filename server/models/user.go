@@ -49,7 +49,7 @@ func (u *User) BeforeCreate(tx *gorm.DB) error {
 //	@return *APIUser
 //	@return error
 func CreateNewUser(user *User) (*APIUser, error) {
-	err := db.Create(user).Error
+	err := db.Model(&User{}).Create(user).Error
 	if err != nil {
 		return &APIUser{}, err
 	}
@@ -66,18 +66,18 @@ func CreateNewUser(user *User) (*APIUser, error) {
 	return returnedUser, nil
 }
 
-// GetUsersByPattern retrieves all users whose username
-// matches the specified pattern "%s%".
+// GetUsersByKey retrieves all users whose username
+// matches the specified pattern "%key%".
 // Here, the "%" is a wild card which represents zero, one or multiple characters.
 //
 //	@param s string
 //	@return []APIUser
 //	@return error
-func GetUsersByPattern(s string) ([]APIUser, error) {
-	pattern := "%" + s + "%"
+func GetUsersByKey(key string) ([]APIUser, error) {
+	pattern := "%" + key + "%"
 	users := make([]APIUser, 0)
 
-	err := db.Where("username LIKE ?", pattern).Find(&users).Error
+	err := db.Model(&User{}).Where("username LIKE ?", pattern).Find(&users).Error
 	if err != nil {
 		return []APIUser{}, err
 	}
@@ -111,7 +111,7 @@ func GetUserByID(id uint) (*APIUser, error) {
 func GetUserByChatID(chatID string, omitPassword bool) (*APIUser, string, error) {
 	user := &User{}
 
-	err := db.Where("chat_id = ?", chatID).First(user).Error
+	err := db.Model(&User{}).Where("chat_id = ?", chatID).First(user).Error
 	if err != nil {
 		return &APIUser{}, "", err
 	}

@@ -20,4 +20,10 @@ func RegisterRouterV1(r fiber.Router) {
 
 	v1.Post("/register", controllers.Register)
 	v1.Post("/login", controllers.Login)
+
+	v1.Post("/friends/:id1/:id2", controllers.AddFriend)
+	v1.Get("/friends/:id", controllers.GetAllFriends)
+
+	v1.Get("/users/:key", controllers.GetUsersByKey)
+	v1.Get("/user/:chatid", controllers.GetUserByChatID)
 }

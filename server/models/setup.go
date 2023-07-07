@@ -16,5 +16,5 @@ func init() {
 
 	db = d
 
-	db.AutoMigrate(&User{}, &Message{})
+	db.AutoMigrate(&User{}, &Message{}, &Friend{})
 }

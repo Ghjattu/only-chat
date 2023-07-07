@@ -20,6 +20,14 @@ var ErrorHandler = func(c *fiber.Ctx, err error) error {
 		Data:    nil,
 	}
 
+	// if err is a *fiber.Error
+	var e *fiber.Error
+	if errors.As(err, &e) {
+		code = e.Code
+		res.Code = code
+		res.Message = e.Message
+	}
+
 	// record not found error
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		code = fiber.StatusNotFound
