@@ -1,5 +1,5 @@
 import React from 'react';
-import './ChatDashboard.css';
+import './Dashboard.css';
 import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
 
