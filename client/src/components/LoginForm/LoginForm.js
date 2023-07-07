@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './LoginForm.css';
 import { Form, Formik } from 'formik';
 import Alert from '@mui/material/Alert';
@@ -52,6 +53,10 @@ const LoginForm = (props) => {
 			</Formik>
 		</div>
 	);
+};
+
+LoginForm.propTypes = {
+	handleLogin: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './Menu.css';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -17,25 +18,20 @@ const theme = createTheme({
 	},
 });
 
-const Menu = () => {
+const Menu = (props) => {
 	const [tabIndex, setTabIndex] = useState(0);
     
 	// tabs switch
 	const handleClick = (index) => { 
 		setTabIndex(index);
+		props.handleTabPanelChange(index);
         
 		const menuItems = document.querySelectorAll('.sidebar-menu-item');
-		const tabs = document.querySelectorAll('.tab');
 
 		for (let i = 0; i < menuItems.length; i++) {
 			menuItems[i].classList.remove('active');
 		}
 		menuItems[index].classList.add('active');
-
-		for (let i = 0; i < tabs.length; i++) {
-			tabs[i].classList.remove('active');
-		}
-		tabs[index].classList.add('active');
 	};
 
 	return (
@@ -60,6 +56,10 @@ const Menu = () => {
 			</div>
 		</div>
 	);
+};
+
+Menu.propTypes = {
+	handleTabPanelChange: PropTypes.func.isRequired,
 };
 
 export default Menu;

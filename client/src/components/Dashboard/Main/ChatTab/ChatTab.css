@@ -1,11 +1,5 @@
 .chat-tab-wrapper {
-    display: none;
-
     height: 100%;
-}
-
-.chat-tab-wrapper.active {
-    display: block;
 }
 
 .chat-tab-content {

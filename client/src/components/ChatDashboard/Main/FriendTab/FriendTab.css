@@ -1,7 +1,0 @@
-.friend-tab-wrapper {
-    display: none;
-}
-
-.friend-tab-wrapper.active {
-    display: block;
-}

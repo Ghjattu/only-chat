@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './FriendList.css';
 import FriendListItem from './FriendListItem/FriendListItem';
 import SearchBar from '../../SearchBar/SearchBar';
@@ -14,6 +15,11 @@ const FriendList = (props) => {
 			<ul className='friend-list'>{friendList}</ul>
 		</div>
 	);
+};
+
+FriendList.propTypes = {
+	friendList: PropTypes.array.isRequired,
+	handleClick: PropTypes.func.isRequired,
 };
 
 export default FriendList;
