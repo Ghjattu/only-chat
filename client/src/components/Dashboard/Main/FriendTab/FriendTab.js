@@ -11,7 +11,7 @@ const FriendTab = ({ user }) => {
 
 	useEffect(() => {
 		(async () => {
-			const res = await friendControllers.getAllFriend(user.id);
+			const res = await friendControllers.getAllFriends(user.id);
 			if (res.code == 200) {
 				setFriendList(res.data);
 			}
