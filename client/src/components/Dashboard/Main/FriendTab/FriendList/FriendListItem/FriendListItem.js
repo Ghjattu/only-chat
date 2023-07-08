@@ -17,7 +17,11 @@ const FriendListItem = (props) => {
 					variant="beam"
 					colors={['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']}
 				/>
-				{props.friend.username}
+				<div className='list-item-friend-info'>
+					<p className='list-item-info-username'>
+						{props.friend.username}
+					</p>
+				</div>
 			</li>
 		</div>
 	);

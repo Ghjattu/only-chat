@@ -1,11 +1,12 @@
 .friend-list-wrapper {
+    padding: .6em 0 0;
     height: 100%;
 }
 
 .friend-list {
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 12px;
 
     height: 100%;
 }
