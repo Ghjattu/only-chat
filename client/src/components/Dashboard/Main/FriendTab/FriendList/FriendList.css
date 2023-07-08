@@ -1,0 +1,11 @@
+.friend-list-wrapper {
+    height: 100%;
+}
+
+.friend-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    height: 100%;
+}
