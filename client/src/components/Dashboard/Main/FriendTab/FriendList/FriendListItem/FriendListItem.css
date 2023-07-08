@@ -1,0 +1,28 @@
+.friend-list-item {
+    overflow: hidden;
+
+    display: flex;
+
+    list-style: none;
+
+    border-radius: 2px;
+    padding: .8em;
+
+    background: rgba(255, 255, 255, .5);
+
+    box-shadow: 0 15px 10px -15px rgba(100, 100, 111, 0.2);
+
+    cursor: pointer;
+}
+
+.list-item-friend-info {
+    display: flex;
+
+    margin: .1em 0 .1em .8em;
+}
+
+.list-item-info-username {
+    font-weight: 500;
+
+    color: rgba(0, 0, 0, .7);
+}

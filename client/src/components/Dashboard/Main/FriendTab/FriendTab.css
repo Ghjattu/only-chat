@@ -1,0 +1,30 @@
+.friend-tab {
+    display: grid;
+    gap: .5em;
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+        "title title"
+        "search info"
+        "list info";
+
+    height: 100%;
+}
+
+.friend-tab-title {
+    grid-area: title;
+}
+
+.friend-tab-friend-list {
+    grid-area: list;
+}
+
+.friend-tab-search-bar {
+    grid-area: search;
+
+    border-bottom: 1px solid rgba(189, 191, 199, .8)
+}
+
+.friend-tab-friend-info {
+    grid-area: info;
+}
