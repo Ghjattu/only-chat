@@ -5,6 +5,7 @@ import TabTitle from '../TabTitle/TabTitle';
 import FriendList from './FriendList/FriendList';
 import friendControllers from '../../../../controllers/friend';
 import FriendInfo from './FriendInfo/FriendInfo';
+import SearchBar from '../SearchBar/SearchBar';
 
 const FriendTab = ({ user }) => {
 	const [friendList, setFriendList] = useState([]);
@@ -24,10 +25,19 @@ const FriendTab = ({ user }) => {
 	};
 
 	return (
-		<div className='tab friend-tab-wrapper'>
-			<TabTitle title='friend'/>
-			<FriendList friendList={friendList} handleClick={handleListItemClick}/>
-			{currentShow !== null && <FriendInfo friend={currentShow}/>}
+		<div className='tab friend-tab'>
+			<div className='friend-tab-title'>
+				<TabTitle title='friend'/>
+			</div>
+			<div className='friend-tab-search-bar'>
+				<SearchBar/>
+			</div>
+			<div className='friend-tab-friend-list'>
+				<FriendList friendList={friendList} handleClick={handleListItemClick}/>
+			</div>
+			<div className='friend-tab-friend-info'>
+				{currentShow !== null && <FriendInfo friend={currentShow}/>}
+			</div>
 		</div>
 	);
 };
