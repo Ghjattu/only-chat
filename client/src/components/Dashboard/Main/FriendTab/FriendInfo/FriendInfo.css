@@ -1,0 +1,36 @@
+.friend-info-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 2em;
+    padding: 1em;
+}
+
+.friend-info {
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+
+    margin-left: 1em;
+
+    font-weight: 500;
+}
+
+.content-username {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.to-chat {
+    cursor: pointer;
+}
+
+.to-chat>svg {
+    transition: all ease .3s;
+}
