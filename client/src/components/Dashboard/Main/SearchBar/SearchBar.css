@@ -23,4 +23,6 @@
 .search-bar::placeholder {
     font-size: .9rem;
     letter-spacing: .5px;
+
+    color: rgb(161, 158, 158);
 }
