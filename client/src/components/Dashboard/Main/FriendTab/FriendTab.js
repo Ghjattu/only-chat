@@ -9,6 +9,7 @@ import SearchBar from '../SearchBar/SearchBar';
 
 const FriendTab = ({ user }) => {
 	const [friendList, setFriendList] = useState([]);
+	const [filteredFriendList, setFilteredFriendList] = useState([]);
 	const [currentShow, setCurrentShow] = useState(null);
 
 	useEffect(() => {
@@ -16,6 +17,7 @@ const FriendTab = ({ user }) => {
 			const res = await friendControllers.getAllFriends(user.id);
 			if (res.code == 200) {
 				setFriendList(res.data);
+				setFilteredFriendList(res.data);
 			}
 		})();
 	}, []);
@@ -24,16 +26,24 @@ const FriendTab = ({ user }) => {
 		setCurrentShow(friend);
 	};
 
+	const handleSearch = (key) => {
+		const filteredList = friendList.filter(friend => {
+			return friend.username.toLowerCase().includes(key);
+		});
+
+		setFilteredFriendList(filteredList);
+	};
+
 	return (
 		<div className='tab friend-tab'>
 			<div className='friend-tab-title'>
 				<TabTitle title='friend'/>
 			</div>
 			<div className='friend-tab-search-bar'>
-				<SearchBar/>
+				<SearchBar handleSearch={handleSearch} />
 			</div>
 			<div className='friend-tab-friend-list'>
-				<FriendList friendList={friendList} handleClick={handleListItemClick}/>
+				<FriendList friendList={filteredFriendList} handleClick={handleListItemClick}/>
 			</div>
 			<div className='friend-tab-friend-info'>
 				{currentShow !== null && <FriendInfo friend={currentShow}/>}
