@@ -1,9 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import './Profile.css';
 import Avatar from 'boring-avatars';
+import { UserContext } from '../../../../contexts/userContext';
 
-const Profile = ({ user }) => {
+const Profile = () => {
+	const user = useContext(UserContext);
+
 	return (
 		<div className='profile'>
 			<div className='profile-avatar'>
@@ -19,12 +21,6 @@ const Profile = ({ user }) => {
 			</div>
 		</div>
 	);
-};
-
-Profile.propTypes = {
-	user: PropTypes.shape({
-		username: PropTypes.string.isRequired,
-	}),
 };
 
 export default Profile;

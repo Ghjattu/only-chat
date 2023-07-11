@@ -7,14 +7,13 @@ import Menu from './Menu/Menu';
 const Sidebar = (props) => {
 	return (
 		<div className='sidebar-wrapper'>
-			<Profile user={props.user}/>
+			<Profile/>
 			<Menu handleTabPanelChange={props.handleTabPanelChange} />
 		</div>
 	);
 };
 
 Sidebar.propTypes = {
-	user: PropTypes.object.isRequired,
 	handleTabPanelChange: PropTypes.func.isRequired,
 };
 

@@ -7,14 +7,14 @@ import friendControllers from '../../../../controllers/friend';
 import FriendInfo from './FriendInfo/FriendInfo';
 import SearchBar from '../SearchBar/SearchBar';
 
-const FriendTab = ({ user }) => {
+const FriendTab = (props) => {
 	const [friendList, setFriendList] = useState([]);
 	const [filteredFriendList, setFilteredFriendList] = useState([]);
 	const [currentShow, setCurrentShow] = useState(null);
 
 	useEffect(() => {
 		(async () => {
-			const res = await friendControllers.getAllFriends(user.id);
+			const res = await friendControllers.getAllFriends(props.id);
 			if (res.code == 200) {
 				setFriendList(res.data);
 				setFilteredFriendList(res.data);
@@ -53,7 +53,7 @@ const FriendTab = ({ user }) => {
 };
 
 FriendTab.propTypes = {
-	user: PropTypes.object.isRequired,
+	id: PropTypes.number.isRequired,
 };
 
 export default FriendTab;

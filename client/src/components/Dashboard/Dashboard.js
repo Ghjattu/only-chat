@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import './Dashboard.css';
 import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
 
-const Dashboard = ({ user }) => {
+const Dashboard = () => {
 	const [tabPanelIndex, setTabPanelIndex] = useState(0);
 
 	const handleTabPanelChange = (index) => { 
@@ -13,14 +12,10 @@ const Dashboard = ({ user }) => {
 
 	return (
 		<div className='dashboard'>
-			<Sidebar user={user} handleTabPanelChange={handleTabPanelChange} />
-			<Main user={user} tabPanelIndex={tabPanelIndex} />
+			<Sidebar handleTabPanelChange={handleTabPanelChange} />
+			<Main tabPanelIndex={tabPanelIndex} />
 		</div>
 	);
-};
-
-Dashboard.propTypes = {
-	user: PropTypes.object,
 };
 
 export default Dashboard;

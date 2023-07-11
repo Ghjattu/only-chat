@@ -3,6 +3,7 @@ import './App.css';
 import WelcomeTabs from './components/WelcomeTabs/WelcomeTabs';
 import websocket from './controllers/ws';
 import Dashboard from './components/Dashboard/Dashboard';
+import { UserContext } from './contexts/userContext';
 
 const App = () => {
 	let hasConnected = false;
@@ -39,9 +40,11 @@ const App = () => {
 
 	return (
 		<div className='app-wrapper'>
-			<div className='app'>
-				{user !== null ? <Dashboard user={user}/> : <WelcomeTabs handleLogin={handleLogin}/>}
-			</div>
+			<UserContext.Provider value={user}>
+				<div className='app'>
+					{user !== null ? <Dashboard/> : <WelcomeTabs handleLogin={handleLogin}/>}
+				</div>
+			</UserContext.Provider>
 		</div>
 	);
 };
