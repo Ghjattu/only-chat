@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './FriendListItem.css';
 import Avatar from 'boring-avatars';
+import Card from '../../../../../Card/Card.js';
 
 const FriendListItem = (props) => {
 	const handleClick = (friend) => { 
@@ -9,7 +10,7 @@ const FriendListItem = (props) => {
 	};
 
 	return (
-		<div className='friend-list-item-wrapper'>
+		<Card>
 			<li className='friend-list-item' onClick={() => handleClick(props.friend)}>
 				<Avatar
 					size={40}
@@ -23,7 +24,7 @@ const FriendListItem = (props) => {
 					</p>
 				</div>
 			</li>
-		</div>
+		</Card>
 	);
 };
 
