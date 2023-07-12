@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './FriendListItem.css';
 import Avatar from 'boring-avatars';
-import Card from '../../../../../Card/Card.js';
+import Card from '../../../../Card/Card.js';
 
 const FriendListItem = (props) => {
 	const handleClick = (friend) => { 

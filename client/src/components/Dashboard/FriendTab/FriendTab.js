@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './FriendTab.css';
 import TabTitle from '../TabTitle/TabTitle';
 import FriendList from './FriendList/FriendList';
-import friendControllers from '../../../../controllers/friend';
+import friendControllers from '../../../controllers/friend';
 import FriendInfo from './FriendInfo/FriendInfo';
 import SearchBar from '../SearchBar/SearchBar';
 
