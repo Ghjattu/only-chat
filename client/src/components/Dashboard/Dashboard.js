@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useState } from 'react';
 import './Dashboard.css';
-import Sidebar from './Sidebar/Sidebar';
-import Main from './Main/Main';
+import Profile from './Profile/Profile.js';
+import Menu from './Menu/Menu.js';
+import StatusBar from './StatusBar/StatusBar.js';
+import ChatTab from './ChatTab/ChatTab.js';
+import FriendTab from './FriendTab/FriendTab.js';
+import { UserContext } from '../../contexts/userContext';
 
-const Dashboard = ({ user }) => {
+const Dashboard = () => {
+	const user = useContext(UserContext);
+    
 	const [tabPanelIndex, setTabPanelIndex] = useState(0);
 
 	const handleTabPanelChange = (index) => { 
@@ -13,14 +18,24 @@ const Dashboard = ({ user }) => {
 
 	return (
 		<div className='dashboard'>
-			<Sidebar user={user} handleTabPanelChange={handleTabPanelChange} />
-			<Main user={user} tabPanelIndex={tabPanelIndex} />
+			<div className='dashboard-profile sidebar'>
+				<Profile/>
+			</div>
+
+			<div className='dashboard-menu sidebar'>
+				<Menu handleTabPanelChange={handleTabPanelChange} />
+			</div>
+
+			<div className='dashboard-main'>
+				<div className='main-wrapper'>
+					<StatusBar/>
+            
+					{tabPanelIndex == 0 && <ChatTab/>}
+					{tabPanelIndex == 1 && <FriendTab id={user.id} />}
+				</div>
+			</div>
 		</div>
 	);
-};
-
-Dashboard.propTypes = {
-	user: PropTypes.object,
 };
 
 export default Dashboard;
