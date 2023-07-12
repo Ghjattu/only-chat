@@ -28,7 +28,7 @@ const FriendTab = (props) => {
 
 	const handleSearch = (key) => {
 		const filteredList = friendList.filter(friend => {
-			return friend.username.toLowerCase().includes(key);
+			return friend.username.toLowerCase().includes(key.toLowerCase());
 		});
 
 		setFilteredFriendList(filteredList);
