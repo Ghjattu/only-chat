@@ -28,6 +28,10 @@ const FriendInfo = (props) => {
 		setIconColor('secondary');
 	};
 
+	const handleClick = () => { 
+		props.handleTabChange(0);
+	};
+
 	return (
 		<div className='friend-info-wrapper'>
 			<div className='friend-info'>
@@ -42,7 +46,9 @@ const FriendInfo = (props) => {
 					<p className='content-chatid'>Chat ID:&nbsp;{props.friend.chatid}</p>
 				</div>
 			</div>
-			<div className='to-chat' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+
+			<div className='to-chat' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
+				onClick={handleClick}>
 				<ThemeProvider theme={theme}>
 					<MapsUgcOutlinedIcon sx={{ fontSize:40 }} color={iconColor} />
 				</ThemeProvider>
@@ -55,7 +61,8 @@ FriendInfo.propTypes = {
 	friend: PropTypes.shape({
 		username: PropTypes.string.isRequired,
 		chatid: PropTypes.string.isRequired,
-	})
+	}),
+	handleTabChange: PropTypes.func.isRequired,
 };
 
 export default FriendInfo;

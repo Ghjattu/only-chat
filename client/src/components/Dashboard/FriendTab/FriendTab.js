@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './FriendTab.css';
-import TabTitle from '../TabTitle/TabTitle';
-import FriendList from './FriendList/FriendList';
+import TabTitle from '../TabTitle/TabTitle.js';
+import FriendList from './FriendList/FriendList.js';
 import friendControllers from '../../../controllers/friend';
-import FriendInfo from './FriendInfo/FriendInfo';
-import SearchBar from '../SearchBar/SearchBar';
+import FriendInfo from './FriendInfo/FriendInfo.js';
+import SearchBar from '../SearchBar/SearchBar.js';
 
 const FriendTab = (props) => {
 	const [friendList, setFriendList] = useState([]);
@@ -39,14 +39,18 @@ const FriendTab = (props) => {
 			<div className='friend-tab-title'>
 				<TabTitle title='friend'/>
 			</div>
+
 			<div className='friend-tab-search-bar'>
 				<SearchBar handleSearch={handleSearch} />
 			</div>
+
 			<div className='friend-tab-friend-list'>
 				<FriendList friendList={filteredFriendList} handleClick={handleListItemClick}/>
 			</div>
+
 			<div className='friend-tab-friend-info'>
-				{currentShow !== null && <FriendInfo friend={currentShow}/>}
+				{currentShow !== null && 
+                    <FriendInfo friend={currentShow} handleTabChange={props.handleTabChange} />}
 			</div>
 		</div>
 	);
@@ -54,6 +58,7 @@ const FriendTab = (props) => {
 
 FriendTab.propTypes = {
 	id: PropTypes.number.isRequired,
+	handleTabChange: PropTypes.func.isRequired,
 };
 
 export default FriendTab;

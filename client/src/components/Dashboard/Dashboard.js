@@ -10,10 +10,10 @@ import { UserContext } from '../../contexts/userContext';
 const Dashboard = () => {
 	const user = useContext(UserContext);
     
-	const [tabPanelIndex, setTabPanelIndex] = useState(0);
+	const [tabIndex, setTabIndex] = useState(0);
 
-	const handleTabPanelChange = (index) => { 
-		setTabPanelIndex(index);
+	const handleTabChange = (index) => { 
+		setTabIndex(index);
 	};
 
 	return (
@@ -23,15 +23,15 @@ const Dashboard = () => {
 			</div>
 
 			<div className='dashboard-menu sidebar'>
-				<Menu handleTabPanelChange={handleTabPanelChange} />
+				<Menu tabIndex={tabIndex} handleTabChange={handleTabChange} />
 			</div>
 
 			<div className='dashboard-main'>
 				<div className='main-wrapper'>
 					<StatusBar/>
             
-					{tabPanelIndex == 0 && <ChatTab/>}
-					{tabPanelIndex == 1 && <FriendTab id={user.id} />}
+					{tabIndex == 0 && <ChatTab/>}
+					{tabIndex == 1 && <FriendTab id={user.id} handleTabChange={handleTabChange} />}
 				</div>
 			</div>
 		</div>
