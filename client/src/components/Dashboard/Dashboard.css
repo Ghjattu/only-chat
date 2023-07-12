@@ -1,8 +1,31 @@
 .dashboard {
-    display: flex;
+    display: grid;
+    grid-template-areas:
+        "profile main"
+        "opt-menu main";
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
 
     width: 85vw;
     height: 85vh;
     min-width: 1000px;
     min-height: 500px;
+}
+
+.dashboard-profile {
+    grid-area: profile;
+}
+
+.dashboard-menu {
+    grid-area: opt-menu;
+
+    padding: 1em 0 0;
+}
+
+.dashboard-main {
+    grid-area: main;
+}
+
+.sidebar {
+    background: rgba(215, 218, 244, 0.4);
 }

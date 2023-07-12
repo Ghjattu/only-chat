@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './Profile.css';
 import Avatar from 'boring-avatars';
-import { UserContext } from '../../../../contexts/userContext';
+import { UserContext } from '../../../contexts/userContext';
 
 const Profile = () => {
 	const user = useContext(UserContext);
