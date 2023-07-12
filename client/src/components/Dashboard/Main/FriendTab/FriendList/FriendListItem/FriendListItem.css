@@ -1,6 +1,8 @@
 .friend-list-item {
     display: flex;
 
+    padding: .8em;
+
     list-style: none;
 }
 
