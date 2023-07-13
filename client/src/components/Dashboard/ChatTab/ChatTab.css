@@ -1,7 +1,36 @@
-.chat-tab-wrapper {
+.chat-tab {
+    overflow: hidden;
+
+    display: grid;
+    gap: .5em;
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+        "title title"
+        "search name"
+        "list history";
+
     height: 100%;
 }
 
-.chat-tab-content {
-    display: flex;
+.chat-tab-title {
+    grid-area: title;
+}
+
+.chat-tab-search-bar {
+    grid-area: search;
+
+    border-bottom: 1px solid rgba(189, 191, 199, .8);
+}
+
+.chat-tab-name {
+    grid-area: name;
+}
+
+.chat-tab-list {
+    grid-area: list;
+}
+
+.chat-tab-history {
+    grid-area: history;
 }

@@ -5,6 +5,6 @@
     padding: .5em 1em;
 }
 
-.statusbar-wrapper>.badge {
+.statusbar-wrapper>span {
     cursor: pointer;
 }

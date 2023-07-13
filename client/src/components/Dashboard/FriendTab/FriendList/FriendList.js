@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './FriendList.css';
-import FriendListItem from './FriendListItem/FriendListItem';
+import Item from './Item/Item';
+import List from '../../../List/List';
 
 const FriendList = (props) => {
 	const friendList = props.friendList.map(friend => 
-		<FriendListItem key={friend.id} friend={friend} handleClick={props.handleClick}/>
+		<Item key={friend.id} friend={friend} handleClick={props.handleClick}/>
 	);
 
 	return (
-		<div className='friend-list-wrapper'>
-			<ul className='friend-list'>{friendList}</ul>
-		</div>
+		<List>{friendList}</List>
 	);
 };
 

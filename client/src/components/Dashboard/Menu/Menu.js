@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Menu.css';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
@@ -19,36 +19,33 @@ const theme = createTheme({
 });
 
 const Menu = (props) => {
-	const [tabIndex, setTabIndex] = useState(0);
+	const className = 'sidebar-menu-item';
+	const classNameActive = 'sidebar-menu-item active';
+    
+	const { tabIndex, handleTabChange } = props;
     
 	// tabs switch
 	const handleClick = (index) => { 
-		setTabIndex(index);
-		props.handleTabPanelChange(index);
-        
-		const menuItems = document.querySelectorAll('.sidebar-menu-item');
-
-		for (let i = 0; i < menuItems.length; i++) {
-			menuItems[i].classList.remove('active');
-		}
-		menuItems[index].classList.add('active');
+		handleTabChange(index);
 	};
 
 	return (
 		<div className='sidebar-menu'>
-			<div className='sidebar-menu-item active' onClick={() => handleClick(0)}>
+			<div className={tabIndex === 0 ? classNameActive : className} onClick={() => handleClick(0)}>
 				<ThemeProvider theme={theme}>
 					<ChatBubbleOutlineIcon color={tabIndex === 0 ? 'primary' : 'secondary'} fontSize='20'/>
 				</ThemeProvider>
 				<p>chat</p>
 			</div>
-			<div className='sidebar-menu-item' onClick={() => handleClick(1)}>
+
+			<div className={tabIndex === 1 ? classNameActive : className} onClick={() => handleClick(1)}>
 				<ThemeProvider theme={theme}>
 					<PersonOutlineOutlinedIcon color={tabIndex === 1 ? 'primary' : 'secondary'} fontSize='20'/>
 				</ThemeProvider>
 				<p>friends</p>
 			</div>
-			<div className='sidebar-menu-item' onClick={() => handleClick(2)}>
+
+			<div className={tabIndex === 2 ? classNameActive : className} onClick={() => handleClick(2)}>
 				<ThemeProvider theme={theme}>
 					<SettingsOutlinedIcon color={tabIndex === 2 ? 'primary' : 'secondary'} fontSize='20'/>
 				</ThemeProvider>
@@ -59,7 +56,8 @@ const Menu = (props) => {
 };
 
 Menu.propTypes = {
-	handleTabPanelChange: PropTypes.func.isRequired,
+	tabIndex: PropTypes.number.isRequired,
+	handleTabChange: PropTypes.func.isRequired,
 };
 
 export default Menu;
