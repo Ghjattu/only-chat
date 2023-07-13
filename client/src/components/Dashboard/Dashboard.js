@@ -30,7 +30,7 @@ const Dashboard = () => {
 				<div className='main-wrapper'>
 					<StatusBar/>
             
-					{tabIndex == 0 && <ChatTab/>}
+					{tabIndex == 0 && <ChatTab id={user.id} />}
 					{tabIndex == 1 && <FriendTab id={user.id} handleTabChange={handleTabChange} />}
 				</div>
 			</div>
