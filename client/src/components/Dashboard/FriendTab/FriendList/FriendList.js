@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './FriendList.css';
 import Item from './Item/Item';
 import List from '../../../List/List';
 
