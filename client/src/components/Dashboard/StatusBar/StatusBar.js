@@ -20,7 +20,7 @@ const StatusBar = () => {
 	return (
 		<div className='statusbar-wrapper'>
 			<ThemeProvider theme={theme}>
-				<Badge badgeContent={msgCount} max={99} color='primary' className='badge'>
+				<Badge badgeContent={msgCount} max={99} color='primary'>
 					<NotificationsNoneOutlinedIcon fontSize='small'/>
 				</Badge>
 			</ThemeProvider>
