@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './FriendListItem.css';
+import './Item.css';
 import Avatar from 'boring-avatars';
 import Card from '../../../../Card/Card.js';
 
-const FriendListItem = (props) => {
+const Item = (props) => {
 	const handleClick = (friend) => { 
 		props.handleClick(friend);
 	};
@@ -28,11 +28,11 @@ const FriendListItem = (props) => {
 	);
 };
 
-FriendListItem.propTypes = {
+Item.propTypes = {
 	friend: PropTypes.shape({
 		username: PropTypes.string.isRequired,
 	}),
 	handleClick: PropTypes.func.isRequired,
 };
 
-export default FriendListItem;
+export default Item;
