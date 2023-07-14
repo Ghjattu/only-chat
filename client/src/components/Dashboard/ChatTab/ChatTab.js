@@ -5,11 +5,12 @@ import ChatList from './ChatList/ChatList.js';
 import TabTitle from '../TabTitle/TabTitle.js';
 import chatControllers from '../../../controllers/chat';
 import SearchBar from '../SearchBar/SearchBar.js';
+import ChatHistory from './ChatHistory/ChatHistory.js';
 
 const ChatTab = (props) => {
 	const [chatList, setChatList] = useState([]);
 	const [filteredChatList, setFilteredChatList] = useState([]);
-	// const [currentShow, setCurrentShow] = useState(null);
+	const [currentShow, setCurrentShow] = useState(null);
     
 	useEffect(() => {
 		(async () => {
@@ -20,6 +21,10 @@ const ChatTab = (props) => {
 			}
 		})();
 	}, []);
+
+	const handleListItemClick = (chat) => { 
+		setCurrentShow(chat);   
+	};
 
 	const handleSearch = (key) => {
 		const filteredList = chatList.filter(chat => {
@@ -39,13 +44,18 @@ const ChatTab = (props) => {
 				<SearchBar handleSearch={handleSearch} />
 			</div>
 
-			<div className='chat-tab-name'></div>
-
-			<div className='chat-tab-list'>
-				<ChatList chatList={filteredChatList} />
+			<div className='chat-tab-name'>
+				{currentShow !== null && <p className='username'>{currentShow.username}</p>}
 			</div>
 
-			<div className='chat-tab-history'></div>
+			<div className='chat-tab-list'>
+				<ChatList chatList={filteredChatList} handleClick={handleListItemClick} />
+			</div>
+
+			<div className='chat-tab-history'>
+				{currentShow !== null && 
+                    <ChatHistory chat={currentShow} />}
+			</div>
 		</div>
 	);
 };

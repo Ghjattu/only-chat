@@ -6,9 +6,13 @@ import Card from '../../../../Card/Card.js';
 import Badge from '../../../../Badge/Badge.js';
 
 const Item = (props) => {
+	const handleClick = (chat) => { 
+		props.handleClick(chat);
+	};
+
 	return (
 		<Card>
-			<div className='chat-list-item'>
+			<div className='chat-list-item' onClick={() => handleClick(props.chat)}>
 				<div className='avatar'>
 					<Avatar
 						size={40}
@@ -42,6 +46,7 @@ Item.propTypes = {
 		last_msg: PropTypes.string.isRequired,
 		unread_count: PropTypes.number.isRequired,
 	}),
+	handleClick: PropTypes.func.isRequired,
 };
 
 export default Item;
