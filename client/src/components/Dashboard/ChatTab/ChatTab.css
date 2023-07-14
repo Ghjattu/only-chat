@@ -2,9 +2,10 @@
     overflow: hidden;
 
     display: grid;
-    gap: .5em;
-    grid-template-columns: 350px 1fr;
+    row-gap: 8px;
+    column-gap: 20px;
     grid-template-rows: auto auto 1fr;
+    grid-template-columns: 350px 1fr;
     grid-template-areas:
         "title title"
         "search name"
@@ -25,6 +26,18 @@
 
 .chat-tab-name {
     grid-area: name;
+}
+
+.chat-tab-name>.username {
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid rgba(189, 191, 199, .8);
+    height: 100%;
+    width: 100%;
+
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .chat-tab-list {
