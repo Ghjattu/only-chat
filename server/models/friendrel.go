@@ -4,7 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type Friend struct {
+type FriendRel struct {
 	gorm.Model
 	UserID   uint `gorm:"not null;index"`
 	FriendID uint `gorm:"not null"`
@@ -22,14 +22,14 @@ func AddFriend(id1, id2 uint) error {
 		return err
 	}
 
-	r1 := &Friend{UserID: id1, FriendID: id2}
-	r2 := &Friend{UserID: id2, FriendID: id1}
+	r1 := &FriendRel{UserID: id1, FriendID: id2}
+	r2 := &FriendRel{UserID: id2, FriendID: id1}
 
-	if err := tx.Model(&Friend{}).Create(r1).Error; err != nil {
+	if err := tx.Model(&FriendRel{}).Create(r1).Error; err != nil {
 		tx.Rollback()
 		return err
 	}
-	if err := tx.Model(&Friend{}).Create(r2).Error; err != nil {
+	if err := tx.Model(&FriendRel{}).Create(r2).Error; err != nil {
 		tx.Rollback()
 		return err
 	}
@@ -51,7 +51,7 @@ func AddFriend(id1, id2 uint) error {
 func GetAllFriendsByID(id uint) ([]APIUser, error) {
 	friendIDs := make([]uint, 0)
 
-	err := db.Model(&Friend{}).Where("user_id = ?", id).Select("friend_id").Find(&friendIDs).Error
+	err := db.Model(&FriendRel{}).Where("user_id = ?", id).Select("friend_id").Find(&friendIDs).Error
 	if err != nil {
 		return []APIUser{}, err
 	}
