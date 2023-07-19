@@ -5,7 +5,7 @@ import List from '../../../List/List.js';
 
 const ChatList = (props) => {
 	const chatList = props.chatList.map(chat => 
-		<Item key={chat.id} chat={chat} handleClick={props.handleClick} />
+		<Item key={chat.ID} chat={chat} handleClick={props.handleClick} />
 	);
 
 	return (

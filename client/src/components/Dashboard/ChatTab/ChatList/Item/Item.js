@@ -16,14 +16,14 @@ const Item = (props) => {
 				<div className='avatar'>
 					<Avatar
 						size={40}
-						name={props.chat.username}
+						name={props.chat.friend_username}
 						variant="beam"
 						colors={['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']}
 					/>
 				</div>
 
 				<div className='username'>
-					<p>{props.chat.username}</p>
+					<p>{props.chat.friend_username}</p>
 				</div>
 
 				<div className='last-msg'>
@@ -42,7 +42,7 @@ const Item = (props) => {
 
 Item.propTypes = {
 	chat: PropTypes.shape({
-		username: PropTypes.string.isRequired,
+		friend_username: PropTypes.string.isRequired,
 		last_msg: PropTypes.string.isRequired,
 		unread_count: PropTypes.number.isRequired,
 	}),
