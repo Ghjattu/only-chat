@@ -12,6 +12,7 @@ type ChatRel struct {
 	gorm.Model
 	UserID           uint      `json:"user_id" gorm:"not null;index"`
 	FriendID         uint      `json:"friend_id" gorm:"not null"`
+	FriendUsername   string    `json:"friend_username"`
 	LastMessage      string    `json:"last_msg"`
 	LastMsgTimestamp time.Time `json:"last_msg_time"`
 	UnreadCount      uint      `json:"unread_count"`
