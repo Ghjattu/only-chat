@@ -23,7 +23,7 @@ const App = () => {
 
 			if (!hasConnected) {
 				hasConnected = true;
-				websocket.connect(user.id, user.chatid, user.username);
+				websocket.connect(user.user_id, user.chatid, user.username);
 			}
 		}
 	}, []);
@@ -35,7 +35,7 @@ const App = () => {
 		window.localStorage.setItem('user', JSON.stringify(user));
 		window.localStorage.setItem('token', token);
 
-		websocket.connect(user.id, user.chatid, user.username);
+		websocket.connect(user.user_id, user.chatid, user.username);
 	};
 
 	return (

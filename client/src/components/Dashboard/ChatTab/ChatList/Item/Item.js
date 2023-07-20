@@ -43,6 +43,7 @@ const Item = (props) => {
 Item.propTypes = {
 	chat: PropTypes.shape({
 		ID: PropTypes.number.isRequired,
+		friend_id: PropTypes.number.isRequired,
 		friend_username: PropTypes.string.isRequired,
 		last_msg: PropTypes.string.isRequired,
 		unread_count: PropTypes.number.isRequired,

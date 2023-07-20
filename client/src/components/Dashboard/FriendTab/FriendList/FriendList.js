@@ -5,7 +5,7 @@ import List from '../../../List/List';
 
 const FriendList = (props) => {
 	const friendList = props.friendList.map(friend =>
-		<Item key={friend.id} friend={friend} handleClick={props.handleClick}/>
+		<Item key={friend.user_id} friend={friend} handleClick={props.handleClick}/>
 	);
 
 	return (
