@@ -20,15 +20,15 @@ const theme = createTheme({
 const FriendInfo = (props) => {
 	const [iconColor, setIconColor] = useState('secondary');
 
-	const handleMouseEnter = () => { 
+	const handleMouseEnter = () => {
 		setIconColor('primary');
 	};
 
-	const handleMouseLeave = () => { 
+	const handleMouseLeave = () => {
 		setIconColor('secondary');
 	};
 
-	const handleClick = () => { 
+	const handleClick = () => {
 		props.handleTabChange(0);
 	};
 

@@ -6,7 +6,7 @@ import Card from '../../../../Card/Card.js';
 import Badge from '../../../../Badge/Badge.js';
 
 const Item = (props) => {
-	const handleClick = (chat) => { 
+	const handleClick = (chat) => {
 		props.handleClick(chat);
 	};
 

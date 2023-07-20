@@ -9,13 +9,13 @@ import ChatHistory from './ChatHistory/ChatHistory.js';
 const ChatTab = (props) => {
 	const [filteredChatList, setFilteredChatList] = useState([]);
 	const [currentShow, setCurrentShow] = useState(null);
-    
+
 	useEffect(() => {
 		setFilteredChatList(props.chatList);
 	}, [props.chatList]);
 
-	const handleListItemClick = (chat) => { 
-		setCurrentShow(chat);   
+	const handleListItemClick = (chat) => {
+		setCurrentShow(chat);
 	};
 
 	const handleSearch = (key) => {
@@ -37,7 +37,7 @@ const ChatTab = (props) => {
 			</div>
 
 			<div className='chat-tab-name'>
-				{currentShow !== null && 
+				{currentShow !== null &&
                     <p className='username'>{currentShow.friend_username}</p>}
 			</div>
 
@@ -46,7 +46,7 @@ const ChatTab = (props) => {
 			</div>
 
 			<div className='chat-tab-history'>
-				{currentShow !== null && 
+				{currentShow !== null &&
                     <ChatHistory chat={currentShow} />}
 			</div>
 		</div>

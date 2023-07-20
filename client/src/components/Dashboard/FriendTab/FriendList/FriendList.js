@@ -4,7 +4,7 @@ import Item from './Item/Item';
 import List from '../../../List/List';
 
 const FriendList = (props) => {
-	const friendList = props.friendList.map(friend => 
+	const friendList = props.friendList.map(friend =>
 		<Item key={friend.id} friend={friend} handleClick={props.handleClick}/>
 	);
 

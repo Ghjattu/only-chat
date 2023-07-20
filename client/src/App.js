@@ -28,7 +28,7 @@ const App = () => {
 		}
 	}, []);
 
-	const handleLogin = ({ user, token }) => { 
+	const handleLogin = ({ user, token }) => {
 		setUser(user);
 		setToken(token);
 

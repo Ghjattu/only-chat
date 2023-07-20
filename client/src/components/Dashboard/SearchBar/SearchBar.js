@@ -34,8 +34,8 @@ const SearchBar = (props) => {
 
 		clearTimeout(timeoutID);
 
-		const newTimeoutID = setTimeout(() => { 
-			props.handleSearch(value);        
+		const newTimeoutID = setTimeout(() => {
+			props.handleSearch(value);
 		}, 200);
 
 		setTimeoutID(newTimeoutID);

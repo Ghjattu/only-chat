@@ -13,7 +13,7 @@ const TextInput = ({ label, ...props }) => {
 			</div>
 			<input className='text-input' autoComplete='on' {...field} {...props} />
 			<div className='text-input-notification'>
-				{meta.touched && meta.error ? 
+				{meta.touched && meta.error ?
 					<p>{meta.error}</p> : <p></p>}
 			</div>
 		</div>

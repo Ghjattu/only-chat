@@ -5,7 +5,7 @@ import Avatar from 'boring-avatars';
 import Card from '../../../../Card/Card.js';
 
 const Item = (props) => {
-	const handleClick = (friend) => { 
+	const handleClick = (friend) => {
 		props.handleClick(friend);
 	};
 

@@ -11,7 +11,7 @@ import friendControllers from '../../controllers/friend';
 
 const Dashboard = () => {
 	const user = useContext(UserContext);
-    
+
 	const [tabIndex, setTabIndex] = useState(0);
 	const [chatList, setChatList] = useState([]);
 	const [friendList, setFriendList] = useState([]);
@@ -26,19 +26,19 @@ const Dashboard = () => {
 
 			res = await friendControllers.getAllFriends(user.id);
 			if (res.code === 200) {
-				setFriendList(res.data);                
+				setFriendList(res.data);
 			}
 		})();
 	}, []);
 
-	const handleTabChange = (index) => { 
+	const handleTabChange = (index) => {
 		setTabIndex(index);
 	};
 
 	return (
 		<div className='dashboard'>
 			<div className='dashboard-profile sidebar'>
-				<Profile/>
+				<Profile />
 			</div>
 
 			<div className='dashboard-menu sidebar'>
@@ -47,10 +47,12 @@ const Dashboard = () => {
 
 			<div className='dashboard-main'>
 				<div className='main-wrapper'>
-					<StatusBar/>
-            
+					<StatusBar />
+
 					{tabIndex == 0 && <ChatTab chatList={chatList} />}
-					{tabIndex == 1 && <FriendTab friendList={friendList} handleTabChange={handleTabChange} />}
+					{tabIndex == 1 &&
+						<FriendTab
+							friendList={friendList} handleTabChange={handleTabChange} />}
 				</div>
 			</div>
 		</div>
