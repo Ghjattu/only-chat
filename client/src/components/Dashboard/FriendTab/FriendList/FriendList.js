@@ -15,7 +15,7 @@ const FriendList = (props) => {
 
 FriendList.propTypes = {
 	friendList: PropTypes.arrayOf(PropTypes.shape({
-		id: PropTypes.number.isRequired,
+		user_id: PropTypes.number.isRequired,
 		chatid: PropTypes.string.isRequired,
 		username: PropTypes.string.isRequired,
 	})).isRequired,

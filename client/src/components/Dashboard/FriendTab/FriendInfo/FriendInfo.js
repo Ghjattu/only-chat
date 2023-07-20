@@ -30,6 +30,7 @@ const FriendInfo = (props) => {
 
 	const handleClick = () => {
 		props.handleTabChange(0);
+		props.handleToChatClick(props.friend);
 	};
 
 	return (
@@ -59,10 +60,12 @@ const FriendInfo = (props) => {
 
 FriendInfo.propTypes = {
 	friend: PropTypes.shape({
+		user_id: PropTypes.number.isRequired,
 		username: PropTypes.string.isRequired,
 		chatid: PropTypes.string.isRequired,
 	}),
 	handleTabChange: PropTypes.func.isRequired,
+	handleToChatClick: PropTypes.func.isRequired,
 };
 
 export default FriendInfo;
