@@ -14,7 +14,11 @@ const FriendList = (props) => {
 };
 
 FriendList.propTypes = {
-	friendList: PropTypes.array.isRequired,
+	friendList: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.number.isRequired,
+		chatid: PropTypes.string.isRequired,
+		username: PropTypes.string.isRequired,
+	})).isRequired,
 	handleClick: PropTypes.func.isRequired,
 };
 

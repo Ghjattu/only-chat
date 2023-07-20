@@ -14,7 +14,12 @@ const ChatList = (props) => {
 };
 
 ChatList.propTypes = {
-	chatList: PropTypes.array.isRequired,
+	chatList: PropTypes.arrayOf(PropTypes.shape({
+		ID: PropTypes.number.isRequired,
+		friend_username: PropTypes.string.isRequired,
+		last_msg: PropTypes.string.isRequired,
+		unread_count: PropTypes.number.isRequired,
+	})).isRequired,
 	handleClick: PropTypes.func.isRequired,
 };
 

@@ -3,31 +3,23 @@ import PropTypes from 'prop-types';
 import './FriendTab.css';
 import TabTitle from '../TabTitle/TabTitle.js';
 import FriendList from './FriendList/FriendList.js';
-import friendControllers from '../../../controllers/friend';
 import FriendInfo from './FriendInfo/FriendInfo.js';
 import SearchBar from '../SearchBar/SearchBar.js';
 
 const FriendTab = (props) => {
-	const [friendList, setFriendList] = useState([]);
 	const [filteredFriendList, setFilteredFriendList] = useState([]);
 	const [currentShow, setCurrentShow] = useState(null);
 
 	useEffect(() => {
-		(async () => {
-			const res = await friendControllers.getAllFriends(props.id);
-			if (res.code == 200) {
-				setFriendList(res.data);
-				setFilteredFriendList(res.data);
-			}
-		})();
-	}, []);
+		setFilteredFriendList(props.friendList);
+	}, [props.friendList]);
 
 	const handleListItemClick = (friend) => { 
 		setCurrentShow(friend);
 	};
 
 	const handleSearch = (key) => {
-		const filteredList = friendList.filter(friend => {
+		const filteredList = props.friendList.filter(friend => {
 			return friend.username.toLowerCase().includes(key.toLowerCase());
 		});
 
@@ -57,7 +49,11 @@ const FriendTab = (props) => {
 };
 
 FriendTab.propTypes = {
-	id: PropTypes.number.isRequired,
+	friendList: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.number.isRequired,
+		chatid: PropTypes.string.isRequired,
+		username: PropTypes.string.isRequired,
+	})).isRequired,
 	handleTabChange: PropTypes.func.isRequired,
 };
 
