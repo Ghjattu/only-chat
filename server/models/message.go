@@ -8,8 +8,8 @@ import (
 
 type Message struct {
 	gorm.Model
-	FromID    uint      `json:"from" gorm:"index"`
-	ToID      uint      `json:"to"`
+	FromID    uint      `json:"from_id" gorm:"index"`
+	ToID      uint      `json:"to_id"`
 	Timestamp time.Time `json:"timestamp"`
 	Content   string    `json:"content"`
 }

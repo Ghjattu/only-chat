@@ -23,7 +23,7 @@ type User struct {
 // APIUser contains the data returned by the server to the client,
 // it omits the user's password.
 type APIUser struct {
-	ID       uint   `json:"id"`
+	ID       uint   `json:"user_id"`
 	ChatID   string `json:"chatid"`
 	Username string `json:"username"`
 }
