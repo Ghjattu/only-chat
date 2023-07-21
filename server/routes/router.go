@@ -32,4 +32,5 @@ func RegisterRouterV1(r fiber.Router) {
 	v1.Delete("/chat/:id", controllers.DeleteChatRelByID)
 
 	v1.Get("/messages/:user_id/:friend_id", controllers.GetMessagesByUserID)
+	v1.Post("/messages", controllers.CreateNewMessage)
 }

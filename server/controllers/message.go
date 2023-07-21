@@ -30,3 +30,22 @@ func GetMessagesByUserID(c *fiber.Ctx) error {
 		Data:    messages,
 	})
 }
+
+func CreateNewMessage(c *fiber.Ctx) error {
+	m := &models.Message{}
+
+	if err := c.BodyParser(m); err != nil {
+		return utils.ErrorHandler(c, err)
+	}
+
+	if err := models.CreateNewMessage(m); err != nil {
+		return utils.ErrorHandler(c, err)
+	}
+
+	return c.JSON(utils.Response{
+		Success: true,
+		Code:    fiber.StatusOK,
+		Message: "success",
+		Data:    m.ID,
+	})
+}
