@@ -22,7 +22,7 @@ func AddChatRel(c *fiber.Ctx) error {
 		Success: true,
 		Code:    fiber.StatusOK,
 		Message: "success",
-		Data:    nil,
+		Data:    cr.ID,
 	})
 }
 
