@@ -21,11 +21,11 @@ const theme = createTheme({
 const Menu = (props) => {
 	const className = 'sidebar-menu-item';
 	const classNameActive = 'sidebar-menu-item active';
-    
+
 	const { tabIndex, handleTabChange } = props;
-    
+
 	// tabs switch
-	const handleClick = (index) => { 
+	const handleClick = (index) => {
 		handleTabChange(index);
 	};
 

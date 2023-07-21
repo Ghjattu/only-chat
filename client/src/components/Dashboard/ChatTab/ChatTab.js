@@ -3,32 +3,24 @@ import './ChatTab.css';
 import PropTypes from 'prop-types';
 import ChatList from './ChatList/ChatList.js';
 import TabTitle from '../TabTitle/TabTitle.js';
-import chatControllers from '../../../controllers/chat';
 import SearchBar from '../SearchBar/SearchBar.js';
 import ChatHistory from './ChatHistory/ChatHistory.js';
 
 const ChatTab = (props) => {
-	const [chatList, setChatList] = useState([]);
 	const [filteredChatList, setFilteredChatList] = useState([]);
 	const [currentShow, setCurrentShow] = useState(null);
-    
-	useEffect(() => {
-		(async () => {
-			const res = await chatControllers.getChatList(props.id);
-			if (res.code === 200) {
-				setChatList(res.data);
-				setFilteredChatList(res.data);
-			}
-		})();
-	}, []);
 
-	const handleListItemClick = (chat) => { 
-		setCurrentShow(chat);   
+	useEffect(() => {
+		setFilteredChatList(props.chatList);
+	}, [props.chatList]);
+
+	const handleListItemClick = (chat) => {
+		setCurrentShow(chat);
 	};
 
 	const handleSearch = (key) => {
-		const filteredList = chatList.filter(chat => {
-			return chat.username.toLowerCase().includes(key.toLowerCase());
+		const filteredList = props.chatList.filter(chat => {
+			return chat.friend_username.toLowerCase().includes(key.toLowerCase());
 		});
 
 		setFilteredChatList(filteredList);
@@ -45,7 +37,8 @@ const ChatTab = (props) => {
 			</div>
 
 			<div className='chat-tab-name'>
-				{currentShow !== null && <p className='username'>{currentShow.username}</p>}
+				{currentShow !== null &&
+                    <p className='username'>{currentShow.friend_username}</p>}
 			</div>
 
 			<div className='chat-tab-list'>
@@ -53,15 +46,25 @@ const ChatTab = (props) => {
 			</div>
 
 			<div className='chat-tab-history'>
-				{currentShow !== null && 
+				{currentShow !== null &&
                     <ChatHistory chat={currentShow} />}
+			</div>
+
+			<div className="chat-tab-input">
+				<input type="text" />
 			</div>
 		</div>
 	);
 };
 
 ChatTab.propTypes = {
-	id: PropTypes.number.isRequired,
+	chatList: PropTypes.arrayOf(PropTypes.shape({
+		ID: PropTypes.number.isRequired,
+		friend_id: PropTypes.number.isRequired,
+		friend_username: PropTypes.string.isRequired,
+		last_msg: PropTypes.string.isRequired,
+		unread_count: PropTypes.number.isRequired,
+	})).isRequired,
 };
 
 export default ChatTab;

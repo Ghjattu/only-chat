@@ -5,11 +5,11 @@ import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 
-const WelcomeTabs = (props) => { 
+const WelcomeTabs = (props) => {
 	const { handleLogin } = props;
 	const [tabIndex, setTabIndex] = useState(0);
 
-	const handleClick = (index) => { 
+	const handleClick = (index) => {
 		setTabIndex(index);
 
 		const attributes = document.querySelectorAll('.tabs-selector-attribute');

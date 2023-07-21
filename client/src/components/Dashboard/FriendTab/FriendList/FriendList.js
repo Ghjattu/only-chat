@@ -4,8 +4,8 @@ import Item from './Item/Item';
 import List from '../../../List/List';
 
 const FriendList = (props) => {
-	const friendList = props.friendList.map(friend => 
-		<Item key={friend.id} friend={friend} handleClick={props.handleClick}/>
+	const friendList = props.friendList.map(friend =>
+		<Item key={friend.user_id} friend={friend} handleClick={props.handleClick}/>
 	);
 
 	return (
@@ -14,7 +14,11 @@ const FriendList = (props) => {
 };
 
 FriendList.propTypes = {
-	friendList: PropTypes.array.isRequired,
+	friendList: PropTypes.arrayOf(PropTypes.shape({
+		user_id: PropTypes.number.isRequired,
+		chatid: PropTypes.string.isRequired,
+		username: PropTypes.string.isRequired,
+	})).isRequired,
 	handleClick: PropTypes.func.isRequired,
 };
 

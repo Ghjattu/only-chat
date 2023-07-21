@@ -5,7 +5,7 @@ import Avatar from 'boring-avatars';
 import Card from '../../../../Card/Card.js';
 
 const Item = (props) => {
-	const handleClick = (friend) => { 
+	const handleClick = (friend) => {
 		props.handleClick(friend);
 	};
 
@@ -30,8 +30,10 @@ const Item = (props) => {
 
 Item.propTypes = {
 	friend: PropTypes.shape({
+		user_id: PropTypes.number.isRequired,
+		chatid: PropTypes.string.isRequired,
 		username: PropTypes.string.isRequired,
-	}),
+	}).isRequired,
 	handleClick: PropTypes.func.isRequired,
 };
 

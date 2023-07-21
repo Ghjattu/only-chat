@@ -6,7 +6,7 @@ import Card from '../../../../Card/Card.js';
 import Badge from '../../../../Badge/Badge.js';
 
 const Item = (props) => {
-	const handleClick = (chat) => { 
+	const handleClick = (chat) => {
 		props.handleClick(chat);
 	};
 
@@ -42,10 +42,12 @@ const Item = (props) => {
 
 Item.propTypes = {
 	chat: PropTypes.shape({
+		ID: PropTypes.number.isRequired,
+		friend_id: PropTypes.number.isRequired,
 		friend_username: PropTypes.string.isRequired,
 		last_msg: PropTypes.string.isRequired,
 		unread_count: PropTypes.number.isRequired,
-	}),
+	}).isRequired,
 	handleClick: PropTypes.func.isRequired,
 };
 
