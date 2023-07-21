@@ -8,17 +8,17 @@ import (
 )
 
 func GetMessagesByUserID(c *fiber.Ctx) error {
-	id1, err := getID(c, "id1")
+	user_id, err := getID(c, "user_id")
 	if err != nil {
 		return utils.ErrorHandler(c, err)
 	}
 
-	id2, err := getID(c, "id2")
+	friend_id, err := getID(c, "friend_id")
 	if err != nil {
 		return utils.ErrorHandler(c, err)
 	}
 
-	messages, err := models.GetMessagesByUserID(id1, id2)
+	messages, err := models.GetMessagesByUserID(user_id, friend_id)
 	if err != nil {
 		return utils.ErrorHandler(c, err)
 	}

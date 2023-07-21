@@ -32,18 +32,18 @@ func CreateNewMessage(m *Message) error {
 	return err
 }
 
-// GetMessagesByUserID gets all messages between id1 and id2.
+// GetMessagesByUserID gets all messages between user_id and friend_id.
 //
-//	@param id1 uint
-//	@param id2 uint
+//	@param user_id uint
+//	@param friend_id uint
 //	@return []Message
 //	@return error
-func GetMessagesByUserID(id1, id2 uint) ([]Message, error) {
+func GetMessagesByUserID(user_id, friend_id uint) ([]Message, error) {
 	messages := make([]Message, 0)
 
 	err := db.Model(&Message{}).
-		Where("from_id = ? AND to_id = ?", id1, id2).
-		Or("from_id = ? AND to_id = ?", id1, id2).
+		Where("from_id = ? AND to_id = ?", user_id, friend_id).
+		Or("from_id = ? AND to_id = ?", friend_id, user_id).
 		Find(&messages).Error
 
 	if err != nil {
