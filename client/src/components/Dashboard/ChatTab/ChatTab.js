@@ -49,10 +49,6 @@ const ChatTab = (props) => {
 				{currentShow !== null &&
                     <ChatHistory chat={currentShow} />}
 			</div>
-
-			<div className="chat-tab-input">
-				<input type="text" />
-			</div>
 		</div>
 	);
 };
