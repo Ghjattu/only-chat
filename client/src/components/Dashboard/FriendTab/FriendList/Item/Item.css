@@ -1,19 +1,29 @@
 .friend-list-item {
-    display: flex;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	row-gap: 3px;
+	column-gap: 13px;
+	grid-template-areas:
+		"avatar username"
+		"avatar signature";
+	align-items: center;
 
-    padding: .8em;
+	padding: .8em;
 
-    list-style: none;
+	font-size: .9rem;
 }
 
-.list-item-friend-info {
-    display: flex;
+.friend-list-item>.avatar {
+	grid-area: avatar;
 
-    margin: .1em 0 .1em .8em;
+	display: flex;
+	align-items: center;
 }
 
-.list-item-info-username {
-    font-weight: 500;
+.friend-list-item>.username {
+	grid-area: username;
 
-    color: rgba(0, 0, 0, .7);
+	font-weight: 600;
+
+	color: rgba(0, 0, 0, .9);
 }

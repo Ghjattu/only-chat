@@ -11,19 +11,20 @@ const Item = (props) => {
 
 	return (
 		<Card>
-			<li className='friend-list-item' onClick={() => handleClick(props.friend)}>
-				<Avatar
-					size={40}
-					name={props.friend.username}
-					variant="beam"
-					colors={['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']}
-				/>
-				<div className='list-item-friend-info'>
-					<p className='list-item-info-username'>
-						{props.friend.username}
-					</p>
+			<div className='friend-list-item' onClick={() => handleClick(props.friend)}>
+				<div className="avatar">
+					<Avatar
+						size={40}
+						name={props.friend.username}
+						variant="beam"
+						colors={['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']}
+					/>
 				</div>
-			</li>
+
+				<div className="username">
+					<p>{props.friend.username}</p>
+				</div>
+			</div>
 		</Card>
 	);
 };
