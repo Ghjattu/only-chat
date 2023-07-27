@@ -1,10 +1,10 @@
 .statusbar-wrapper {
-    display: flex;
-    justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 
-    padding: .5em 1em;
+	padding: .5em 1em;
 }
 
 .statusbar-wrapper>span {
-    cursor: pointer;
+	cursor: pointer;
 }

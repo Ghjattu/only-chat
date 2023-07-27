@@ -1,41 +1,41 @@
 .button-wrapper {
-    --white: rgba(255, 255, 255, .3);
-    --shadow: rgba(0, 0, 0, .1);
+	--white: rgba(255, 255, 255, .3);
+	--shadow: rgba(0, 0, 0, .1);
 }
 
 .button-wrapper {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 
-    margin: 1.4em 0 0;
+	margin: 1.4em 0 0;
 }
 
 .submit-button {
-    border: none;
-    border-top: 1px solid var(--white);
-    border-left: 1px solid var(--white);
-    border-radius: 20px;
-    padding: 1em 1.7em;
-    box-shadow: 4px 4px 60px var(--shadow);
+	border: none;
+	border-top: 1px solid var(--white);
+	border-left: 1px solid var(--white);
+	border-radius: 20px;
+	padding: 1em 1.7em;
+	box-shadow: 4px 4px 60px var(--shadow);
 
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 4px var(--shadow);
+	font-size: 1rem;
+	font-weight: 500;
+	letter-spacing: 1px;
+	text-shadow: 2px 2px 4px var(--shadow);
 
-    color: rgb(255, 113, 193);
+	color: rgb(255, 113, 193);
 
-    background: rgba(255, 255, 255, .2);
+	background: rgba(255, 255, 255, .2);
 
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
 }
 
 .submit-button:hover {
-    background: rgba(255, 255, 255, .3);
-    box-shadow: 4px 4px 60px 8px var(--shadow);
+	background: rgba(255, 255, 255, .3);
+	box-shadow: 4px 4px 60px 8px var(--shadow);
 }
 
 .submit-button:active {
-    background: rgba(255, 255, 255, .5);
+	background: rgba(255, 255, 255, .5);
 }

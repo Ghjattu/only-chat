@@ -1,27 +1,27 @@
 .login-form-wrapper {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    position: relative;
+	position: relative;
 
-    padding: 1em .5em;
+	padding: 1em .5em;
 }
 
 .login-form-title {
-    margin: 0 0 .9em;
+	margin: 0 0 .9em;
 
-    font-size: 1.8rem;
-    font-weight: 500;
+	font-size: 1.8rem;
+	font-weight: 500;
 
-    opacity: .8;
+	opacity: .8;
 }
 
 .error-message {
-    position: absolute;
+	position: absolute;
 
-    top: -10em;
-    left: 2em;
-    right: 2em;
+	top: -10em;
+	left: 2em;
+	right: 2em;
 
-    margin: auto;
+	margin: auto;
 }
