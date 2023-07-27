@@ -1,45 +1,53 @@
 .chat-list-item {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    row-gap: 3px;
-    column-gap: 13px;
-    grid-template-areas:
-        "avatar username timestamp"
-        "avatar last-msg count";
-    align-items: center;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	row-gap: 3px;
+	column-gap: 13px;
+	grid-template-areas:
+		"avatar username timestamp"
+		"avatar last-msg count";
+	align-items: center;
 
-    padding: .8em;
+	padding: .8em;
 
-    font-size: .9rem;
+	font-size: .9rem;
 }
 
 .chat-list-item>.avatar {
-    grid-area: avatar;
+	grid-area: avatar;
 
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .chat-list-item>.username {
-    grid-area: username;
+	grid-area: username;
 
-    font-weight: 600;
+	font-weight: 600;
 
-    color: rgba(0, 0, 0, .9);
+	color: rgba(0, 0, 0, .9);
 }
 
 .chat-list-item>.last-msg {
-    grid-area: last-msg;
+	grid-area: last-msg;
 
-    font-weight: 500;
+	font-weight: 500;
 
-    color: rgb(117, 112, 118);
+	color: rgba(117, 112, 118, 1);
 }
 
-.chat-list-item>.timestamp {
-    grid-area: timestamp;
+.chat-list-item>.last-msg-time {
+	grid-area: timestamp;
+	justify-self: end;
+
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+	font-size: .7rem;
+	font-weight: 500;
+
+	color: rgb(129, 126, 130);
 }
 
 .chat-list-item>.unread-count {
-    grid-area: count;
+	grid-area: count;
+	justify-self: end;
 }

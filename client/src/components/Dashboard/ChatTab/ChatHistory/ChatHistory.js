@@ -22,19 +22,15 @@ const ChatHistory = (props) => {
 				setChatHistory(res.data);
 			}
 		})();
-	}, [props.chat]);
-
-	useEffect(() => {
-		scrollToBottom();
-	}, [chatHistory]);
+	}, [props.chat.friend_id]);
 
 	// Scroll to bottom when chat history changes.
-	const scrollToBottom = () => {
+	useEffect(() => {
 		const container = MsgListContainerRef.current;
 		if (container) {
 			container.scrollTop = container.scrollHeight;
 		}
-	};
+	}, [chatHistory]);
 
 	const handleInputChange = (event) => {
 		setInputMsg(event.target.value);
@@ -42,14 +38,17 @@ const ChatHistory = (props) => {
 
 	const handleInputKeyDown = (event) => {
 		if (event.key === 'Enter') {
+			const currentTimestamp = new Date();
 			const msg = {
 				from_id: user.user_id,
 				to_id: props.chat.friend_id,
-				timestamp: (new Date()).toISOString(),
+				timestamp: currentTimestamp.toISOString(),
 				content: inputMsg,
 			};
 			websocket.sendMsg(JSON.stringify(msg));
 
+			msg.timestamp = currentTimestamp.toString();
+			props.UpdateLastMsg(msg);
 			setChatHistory(draft => {
 				draft.push(msg);
 			});
@@ -85,12 +84,10 @@ const ChatHistory = (props) => {
 
 ChatHistory.propTypes = {
 	chat: PropTypes.shape({
-		ID: PropTypes.number.isRequired,
 		friend_id: PropTypes.number.isRequired,
 		friend_username: PropTypes.string.isRequired,
-		last_msg: PropTypes.string.isRequired,
-		unread_count: PropTypes.number.isRequired,
-	})
+	}),
+	UpdateLastMsg: PropTypes.func.isRequired,
 };
 
 export default ChatHistory;

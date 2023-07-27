@@ -10,6 +10,18 @@ const Item = (props) => {
 		props.handleClick(chat);
 	};
 
+	const formatLastMsgTime = (timestamp) => {
+		const date = new Date(timestamp);
+		const now = new Date();
+		if (date.getDate() === now.getDate()) {
+			return date.getHours() + ':' + date.getMinutes();
+		} else if ((now - date) <= 24 * 60 * 60 * 1000) {
+			return 'Yesterday';
+		} else {
+			return date.getMonth() + 1 + '/' + date.getDate();
+		}
+	};
+
 	return (
 		<Card>
 			<div className='chat-list-item' onClick={() => handleClick(props.chat)}>
@@ -30,7 +42,9 @@ const Item = (props) => {
 					<p>{props.chat.last_msg}</p>
 				</div>
 
-				<div className='timestamp'></div>
+				<div className='last-msg-time'>
+					<p>{formatLastMsgTime(props.chat.last_msg_time)}</p>
+				</div>
 
 				<div className='unread-count'>
 					<Badge count={props.chat.unread_count} />
@@ -46,6 +60,7 @@ Item.propTypes = {
 		friend_id: PropTypes.number.isRequired,
 		friend_username: PropTypes.string.isRequired,
 		last_msg: PropTypes.string.isRequired,
+		last_msg_time: PropTypes.string.isRequired,
 		unread_count: PropTypes.number.isRequired,
 	}).isRequired,
 	handleClick: PropTypes.func.isRequired,

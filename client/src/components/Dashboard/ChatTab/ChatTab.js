@@ -5,17 +5,18 @@ import ChatList from './ChatList/ChatList.js';
 import TabTitle from '../TabTitle/TabTitle.js';
 import SearchBar from '../SearchBar/SearchBar.js';
 import ChatHistory from './ChatHistory/ChatHistory.js';
+import { useImmer } from 'use-immer';
 
 const ChatTab = (props) => {
-	const [filteredChatList, setFilteredChatList] = useState([]);
-	const [currentShow, setCurrentShow] = useState(null);
+	const [filteredChatList, setFilteredChatList] = useImmer([]);
+	const [currentChat, setCurrentChat] = useState(null);
 
 	useEffect(() => {
 		setFilteredChatList(props.chatList);
 	}, [props.chatList]);
 
-	const handleListItemClick = (chat) => {
-		setCurrentShow(chat);
+	const handleChatListItemClick = (chat) => {
+		setCurrentChat(chat);
 	};
 
 	const handleSearch = (key) => {
@@ -24,6 +25,14 @@ const ChatTab = (props) => {
 		});
 
 		setFilteredChatList(filteredList);
+	};
+
+	const UpdateLastMsg = (msg) => {
+		setFilteredChatList(draft => {
+			const index = draft.findIndex(chat => chat.friend_id === msg.to_id);
+			draft[index].last_msg = msg.content;
+			draft[index].last_msg_time = msg.timestamp;
+		});
 	};
 
 	return (
@@ -37,17 +46,17 @@ const ChatTab = (props) => {
 			</div>
 
 			<div className='chat-tab-name'>
-				{currentShow !== null &&
-                    <p className='username'>{currentShow.friend_username}</p>}
+				{currentChat !== null &&
+                    <p className='username'>{currentChat.friend_username}</p>}
 			</div>
 
 			<div className='chat-tab-list'>
-				<ChatList chatList={filteredChatList} handleClick={handleListItemClick} />
+				<ChatList chatList={filteredChatList} handleClick={handleChatListItemClick} />
 			</div>
 
 			<div className='chat-tab-history'>
-				{currentShow !== null &&
-                    <ChatHistory chat={currentShow} />}
+				{currentChat !== null &&
+                    <ChatHistory chat={currentChat} UpdateLastMsg={UpdateLastMsg} />}
 			</div>
 		</div>
 	);
@@ -59,6 +68,7 @@ ChatTab.propTypes = {
 		friend_id: PropTypes.number.isRequired,
 		friend_username: PropTypes.string.isRequired,
 		last_msg: PropTypes.string.isRequired,
+		last_msg_time: PropTypes.string.isRequired,
 		unread_count: PropTypes.number.isRequired,
 	})).isRequired,
 };
