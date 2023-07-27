@@ -42,7 +42,7 @@ const ChatTab = (props) => {
 			</div>
 
 			<div className='chat-tab-search-bar'>
-				<SearchBar handleSearch={handleSearch} />
+				<SearchBar handleSearch={handleSearch} placeholder='Search' />
 			</div>
 
 			<div className='chat-tab-name'>

@@ -33,7 +33,7 @@ const FriendTab = (props) => {
 			</div>
 
 			<div className='friend-tab-search-bar'>
-				<SearchBar handleSearch={handleSearch} />
+				<SearchBar handleSearch={handleSearch} placeholder='Search' />
 			</div>
 
 			<div className='friend-tab-friend-list'>
