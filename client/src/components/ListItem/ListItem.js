@@ -35,8 +35,8 @@ const ListItem = (props) => {
 ListItem.propTypes = {
 	avatar: PropTypes.string.isRequired,
 	primaryText: PropTypes.string.isRequired,
-	secondaryText: PropTypes.string.isRequired,
-	handleListItemClick: PropTypes.func.isRequired,
+	secondaryText: PropTypes.string,
+	handleListItemClick: PropTypes.func,
 	children: PropTypes.node,
 };
 
