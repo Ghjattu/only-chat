@@ -1,11 +1,39 @@
 import React from 'react';
+import './ChatList.css';
 import PropTypes from 'prop-types';
-import Item from './Item/Item.js';
 import List from '../../../List/List.js';
+import ListItem from '../../../ListItem/ListItem.js';
+import Badge from '../../../Badge/Badge.js';
 
 const ChatList = (props) => {
+	const formatLastMsgDate = (timestamp) => {
+		const msgDate = new Date(timestamp);
+		const now = new Date();
+
+		if (msgDate.getDate() === now.getDate()) {  // if today
+			return msgDate.getHours() + ':' + msgDate.getMinutes();
+		} else if ((now - msgDate) <= 24 * 60 * 60 * 1000) {  // if yesterday
+			return 'Yesterday';
+		} else {  // if more than 2 days ago
+			return msgDate.getMonth() + 1 + '/' + msgDate.getDate();
+		}
+	};
+
 	const chatList = props.chatList.map(chat =>
-		<Item key={chat.friend_id} chat={chat} handleClick={props.handleClick} />
+		<ListItem key={chat.friend_id}
+			avatar={chat.friend_username}
+			primaryText={chat.friend_username}
+			secondaryText={chat.last_msg}
+			handleListItemClick={() => props.handleListItemClick(chat)}>
+
+			<div className='last-msg-date'>
+				<p>{formatLastMsgDate(chat.last_msg_date)}</p>
+			</div>
+
+			<div className='unread-count'>
+				<Badge count={chat.unread_count} />
+			</div>
+		</ListItem>
 	);
 
 	return (
@@ -19,9 +47,10 @@ ChatList.propTypes = {
 		friend_id: PropTypes.number.isRequired,
 		friend_username: PropTypes.string.isRequired,
 		last_msg: PropTypes.string.isRequired,
+		last_msg_date: PropTypes.string.isRequired,
 		unread_count: PropTypes.number.isRequired,
 	})).isRequired,
-	handleClick: PropTypes.func.isRequired,
+	handleListItemClick: PropTypes.func.isRequired,
 };
 
 export default ChatList;

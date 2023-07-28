@@ -15,7 +15,7 @@ const ChatTab = (props) => {
 		setFilteredChatList(props.chatList);
 	}, [props.chatList]);
 
-	const handleChatListItemClick = (chat) => {
+	const handleListItemClick = (chat) => {
 		setCurrentChat(chat);
 	};
 
@@ -31,7 +31,7 @@ const ChatTab = (props) => {
 		setFilteredChatList(draft => {
 			const index = draft.findIndex(chat => chat.friend_id === msg.to_id);
 			draft[index].last_msg = msg.content;
-			draft[index].last_msg_time = msg.timestamp;
+			draft[index].last_msg_date = msg.timestamp;
 		});
 	};
 
@@ -51,7 +51,7 @@ const ChatTab = (props) => {
 			</div>
 
 			<div className='chat-tab-list'>
-				<ChatList chatList={filteredChatList} handleClick={handleChatListItemClick} />
+				<ChatList chatList={filteredChatList} handleListItemClick={handleListItemClick} />
 			</div>
 
 			<div className='chat-tab-history'>
@@ -68,7 +68,7 @@ ChatTab.propTypes = {
 		friend_id: PropTypes.number.isRequired,
 		friend_username: PropTypes.string.isRequired,
 		last_msg: PropTypes.string.isRequired,
-		last_msg_time: PropTypes.string.isRequired,
+		last_msg_date: PropTypes.string.isRequired,
 		unread_count: PropTypes.number.isRequired,
 	})).isRequired,
 };
