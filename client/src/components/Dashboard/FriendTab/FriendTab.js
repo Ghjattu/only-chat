@@ -37,7 +37,7 @@ const FriendTab = (props) => {
 			</div>
 
 			<div className='friend-tab-friend-list'>
-				<FriendList friendList={filteredFriendList} handleClick={handleListItemClick} />
+				<FriendList friendList={filteredFriendList} handleListItemClick={handleListItemClick} />
 			</div>
 
 			<div className='friend-tab-friend-info'>
