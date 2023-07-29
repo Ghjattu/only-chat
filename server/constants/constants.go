@@ -1,4 +1,4 @@
-package ws
+package constants
 
 const (
 	PRIVATE_MESSAGE = 1

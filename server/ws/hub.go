@@ -2,6 +2,7 @@ package ws
 
 import (
 	"log"
+	"server/constants"
 	"server/models"
 )
 
@@ -84,11 +85,11 @@ func (hub *Hub) DistributeMessage(message *models.Message) {
 
 	// If the receiving client of the message is offline.
 
-	if message.MessageType == PRIVATE_MESSAGE {
+	if message.MessageType == constants.PRIVATE_MESSAGE {
 		// If the message is a private message,
 		// then update the last message of the chat relationship.
 		// models.UpdateLastMessageAndUnreadCount(message)
-	} else if message.MessageType == FRIEND_REQUEST {
+	} else if message.MessageType == constants.FRIEND_REQUEST {
 		// If the message is a friend request,
 		// then create a new friend request.
 		// TODO:
