@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 
 const ListItem = (props) => {
 	const handleClick = () => {
-		props.handleListItemClick();
+		if (typeof props.handleListItemClick === 'function') {
+			props.handleListItemClick();
+		}
 	};
 
 	return (
