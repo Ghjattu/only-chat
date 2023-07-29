@@ -34,9 +34,6 @@ func (c *Client) Read() {
 			break
 		}
 
-		err = models.CreateNewMessage(msg)
-		if err == nil {
-			c.Hub.MsgQueue <- msg
-		}
+		c.Hub.MsgQueue <- msg
 	}
 }

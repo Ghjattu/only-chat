@@ -70,6 +70,8 @@ func (hub *Hub) Start() {
 //	@receiver hub
 //	@param message *models.Message
 func (hub *Hub) DistributeMessage(message *models.Message) {
+	models.UpdateLastMessageAndUnreadCount(message)
+
 	// If the receiving client of the message is online,
 	// then send the message over the websocket connection.
 	for client := range hub.OnlineClients {
@@ -80,6 +82,15 @@ func (hub *Hub) DistributeMessage(message *models.Message) {
 		}
 	}
 
-	log.Println(message)
-	//TODO: if offline...
+	// If the receiving client of the message is offline.
+
+	if message.MessageType == PRIVATE_MESSAGE {
+		// If the message is a private message,
+		// then update the last message of the chat relationship.
+		// models.UpdateLastMessageAndUnreadCount(message)
+	} else if message.MessageType == FRIEND_REQUEST {
+		// If the message is a friend request,
+		// then create a new friend request.
+		// TODO:
+	}
 }

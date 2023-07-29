@@ -8,10 +8,11 @@ import (
 
 type Message struct {
 	gorm.Model
-	FromID    uint      `json:"from_id" gorm:"index"`
-	ToID      uint      `json:"to_id"`
-	Timestamp time.Time `json:"timestamp"`
-	Content   string    `json:"content"`
+	MessageType uint      `json:"msg_type"`
+	FromID      uint      `json:"from_id" gorm:"index"`
+	ToID        uint      `json:"to_id"`
+	Timestamp   time.Time `json:"timestamp"`
+	Content     string    `json:"content"`
 }
 
 // BeforeCreate is a gorm hook that modifies the timestamp to local time.
@@ -51,4 +52,13 @@ func GetMessagesByUserID(user_id, friend_id uint) ([]Message, error) {
 	}
 
 	return messages, nil
+}
+
+// DeleteMessageByID deletes a message by id.
+//
+//	@param id uint
+//	@return error
+func DeleteMessageByID(id uint) error {
+	err := db.Delete(&Message{}, id).Error
+	return err
 }
