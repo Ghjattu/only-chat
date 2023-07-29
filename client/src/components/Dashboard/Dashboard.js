@@ -9,6 +9,7 @@ import FriendTab from './FriendTab/FriendTab.js';
 import { UserContext } from '../../contexts/userContext';
 import chatControllers from '../../controllers/chat';
 import friendControllers from '../../controllers/friend';
+import DiscoverTab from './DiscoverTab/DiscoverTab';
 
 const Dashboard = () => {
 	const user = useContext(UserContext);
@@ -77,6 +78,7 @@ const Dashboard = () => {
 							friendList={friendList}
 							handleTabChange={handleTabChange}
 							handleToChatClick={handleToChatClick} />}
+					{tabIndex == 2 && <DiscoverTab />}
 				</div>
 			</div>
 		</div>

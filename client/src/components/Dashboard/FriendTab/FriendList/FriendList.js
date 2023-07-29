@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Item from './Item/Item';
 import List from '../../../List/List';
+import ListItem from '../../../ListItem/ListItem.js';
 
 const FriendList = (props) => {
 	const friendList = props.friendList.map(friend =>
-		<Item key={friend.user_id} friend={friend} handleClick={props.handleClick}/>
+		<ListItem key={friend.user_id}
+			avatar={friend.username}
+			primaryText={friend.username}
+			handleListItemClick={() => props.handleListItemClick(friend)}>
+		</ListItem>
 	);
 
 	return (
@@ -19,7 +23,7 @@ FriendList.propTypes = {
 		chatid: PropTypes.string.isRequired,
 		username: PropTypes.string.isRequired,
 	})).isRequired,
-	handleClick: PropTypes.func.isRequired,
+	handleListItemClick: PropTypes.func.isRequired,
 };
 
 export default FriendList;

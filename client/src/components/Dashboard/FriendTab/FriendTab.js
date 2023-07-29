@@ -33,11 +33,11 @@ const FriendTab = (props) => {
 			</div>
 
 			<div className='friend-tab-search-bar'>
-				<SearchBar handleSearch={handleSearch} />
+				<SearchBar handleSearch={handleSearch} placeholder='Search' />
 			</div>
 
 			<div className='friend-tab-friend-list'>
-				<FriendList friendList={filteredFriendList} handleClick={handleListItemClick} />
+				<FriendList friendList={filteredFriendList} handleListItemClick={handleListItemClick} />
 			</div>
 
 			<div className='friend-tab-friend-info'>

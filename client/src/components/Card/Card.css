@@ -1,11 +1,11 @@
 .card {
-    overflow: hidden;
+	overflow: hidden;
 
-    border-radius: 3px;
+	border-radius: 3px;
 
-    background: rgba(255, 255, 255, .5);
+	background: rgba(255, 255, 255, .5);
 
-    box-shadow: 0 15px 10px -17px rgba(100, 100, 111, 0.2);
+	box-shadow: 0 15px 10px -17px rgba(100, 100, 111, 0.2);
 
-    cursor: pointer;
+	cursor: pointer;
 }

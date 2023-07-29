@@ -46,7 +46,8 @@ const SearchBar = (props) => {
 			<ThemeProvider theme={theme}>
 				<SearchOutlinedIcon color={iconColor} />
 			</ThemeProvider>
-			<input className='search-bar' type='text' placeholder='Search' value={searchText} id='search'
+			<input className='search-bar' type='text' placeholder={props.placeholder}
+				value={searchText} id='search'
 				onFocus={handleFocus} onBlur={handleBlur} onChange={handleChange}>
 			</input>
 		</div>
@@ -55,6 +56,7 @@ const SearchBar = (props) => {
 
 SearchBar.propTypes = {
 	handleSearch: PropTypes.func.isRequired,
+	placeholder: PropTypes.string.isRequired
 };
 
 export default SearchBar;

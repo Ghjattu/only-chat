@@ -1,0 +1,35 @@
+.discover-tab {
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+}
+
+.discover-tab-search-bar {
+	border-bottom: 1px solid rgba(189, 191, 199, .8);
+}
+
+.discover-tab-content {
+	overflow: scroll;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	row-gap: 12px;
+	column-gap: 20px;
+}
+
+.request-button {
+	grid-row: 1 /span 2;
+	grid-column: 3 / span 1;
+	justify-self: end;
+
+	border-radius: 3px;
+	padding: 4px 8px;
+
+	font-size: .8rem;
+	font-weight: 600;
+
+	color: rgb(255, 255, 255);
+	background: rgb(52, 142, 233);
+}

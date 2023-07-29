@@ -1,26 +1,26 @@
 .register-form-wrapper {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    padding: 1em .5em;
+	padding: 1em .5em;
 }
 
 .register-form-title {
-    font-size: 1.8rem;
-    font-weight: 500;
+	font-size: 1.8rem;
+	font-weight: 500;
 
-    opacity: .8;
+	opacity: .8;
 }
 
 .register-form-title>span {
-    font-weight: 600;
+	font-weight: 600;
 
-    opacity: 1;
+	opacity: 1;
 }
 
 .register-form-subtitle {
-    margin: 0 0 1.8em;
+	margin: 0 0 1.8em;
 
-    font-size: .9rem;
-    font-weight: 500;
+	font-size: .9rem;
+	font-weight: 500;
 }

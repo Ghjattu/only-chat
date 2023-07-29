@@ -4,6 +4,7 @@ import './Menu.css';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // icons theme
@@ -47,7 +48,14 @@ const Menu = (props) => {
 
 			<div className={tabIndex === 2 ? classNameActive : className} onClick={() => handleClick(2)}>
 				<ThemeProvider theme={theme}>
-					<SettingsOutlinedIcon color={tabIndex === 2 ? 'primary' : 'secondary'} fontSize='20'/>
+					<ExploreOutlinedIcon color={tabIndex === 2 ? 'primary' : 'secondary'} fontSize='20'/>
+				</ThemeProvider>
+				<p>discover</p>
+			</div>
+
+			<div className={tabIndex === 3 ? classNameActive : className} onClick={() => handleClick(2)}>
+				<ThemeProvider theme={theme}>
+					<SettingsOutlinedIcon color={tabIndex === 3 ? 'primary' : 'secondary'} fontSize='20'/>
 				</ThemeProvider>
 				<p>settings</p>
 			</div>
