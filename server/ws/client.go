@@ -2,6 +2,7 @@ package ws
 
 import (
 	"log"
+	"server/constants"
 	"server/models"
 
 	"github.com/gofiber/contrib/websocket"
@@ -34,8 +35,11 @@ func (c *Client) Read() {
 			break
 		}
 
-		err = models.CreateNewMessage(msg)
-		if err == nil {
+		if msg.MessageType == constants.FRIEND_REQUEST {
+			if err := models.CreateNewMessage(msg); err == nil {
+				c.Hub.MsgQueue <- msg
+			}
+		} else {
 			c.Hub.MsgQueue <- msg
 		}
 	}

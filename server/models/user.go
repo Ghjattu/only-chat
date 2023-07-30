@@ -66,18 +66,22 @@ func CreateNewUser(user *User) (*APIUser, error) {
 	return returnedUser, nil
 }
 
-// GetUsersByKey retrieves all users whose username
+// GetUsersByKey retrieves all users whose username or chatid
 // matches the specified pattern "%key%".
 // Here, the "%" is a wild card which represents zero, one or multiple characters.
 //
-//	@param s string
+//	@param key string
 //	@return []APIUser
 //	@return error
 func GetUsersByKey(key string) ([]APIUser, error) {
 	pattern := "%" + key + "%"
 	users := make([]APIUser, 0)
 
-	err := db.Model(&User{}).Where("username LIKE ?", pattern).Find(&users).Error
+	err := db.
+		Model(&User{}).
+		Where("username LIKE ?", pattern).
+		Or("chat_id LIKE ?", pattern).
+		Find(&users).Error
 	if err != nil {
 		return []APIUser{}, err
 	}

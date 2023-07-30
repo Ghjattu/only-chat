@@ -2,6 +2,7 @@ package ws
 
 import (
 	"log"
+	"server/constants"
 	"server/models"
 )
 
@@ -70,16 +71,19 @@ func (hub *Hub) Start() {
 //	@receiver hub
 //	@param message *models.Message
 func (hub *Hub) DistributeMessage(message *models.Message) {
+	if message.MessageType == constants.PRIVATE_MESSAGE {
+		models.UpdateLastMessageAndUnreadCount(message)
+	}
+
 	// If the receiving client of the message is online,
 	// then send the message over the websocket connection.
 	for client := range hub.OnlineClients {
-		if client.ID == message.ToID {
+		if client.ID == message.ReceiverID {
 			client.Conn.WriteJSON(message)
 
 			return
 		}
 	}
 
-	log.Println(message)
-	//TODO: if offline...
+	// If the receiving client of the message is offline.
 }

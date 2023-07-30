@@ -1,6 +1,7 @@
 package models
 
 import (
+	"server/constants"
 	"time"
 
 	"gorm.io/gorm"
@@ -8,10 +9,13 @@ import (
 
 type Message struct {
 	gorm.Model
-	FromID    uint      `json:"from_id" gorm:"index"`
-	ToID      uint      `json:"to_id"`
-	Timestamp time.Time `json:"timestamp"`
-	Content   string    `json:"content"`
+	MessageType   uint      `json:"msg_type"`
+	SenderID      uint      `json:"sender_id" gorm:"index"`
+	ReceiverID    uint      `json:"receiver_id"`
+	Timestamp     time.Time `json:"timestamp"`
+	Content       string    `json:"content"`
+	HaveRead      bool      `json:"have_read"`
+	HaveProcessed bool      `json:"have_processed"`
 }
 
 // BeforeCreate is a gorm hook that modifies the timestamp to local time.
@@ -42,8 +46,39 @@ func GetMessagesByUserID(user_id, friend_id uint) ([]Message, error) {
 	messages := make([]Message, 0)
 
 	err := db.Model(&Message{}).
-		Where("from_id = ? AND to_id = ?", user_id, friend_id).
-		Or("from_id = ? AND to_id = ?", friend_id, user_id).
+		Where("sender_id = ? AND receiver_id = ?", user_id, friend_id).
+		Or("sender_id = ? AND receiver_id = ?", friend_id, user_id).
+		Find(&messages).Error
+
+	if err != nil {
+		return []Message{}, err
+	}
+
+	return messages, nil
+}
+
+// DeleteMessageByID deletes a message by id.
+//
+//	@param id uint
+//	@return error
+func DeleteMessageByID(id uint) error {
+	err := db.Delete(&Message{}, id).Error
+	return err
+}
+
+// GetAllUnprocessedNotifications gets all unprocessed notifications,
+// such as unprocessed friend requests.
+//
+//	@param receiverID uint
+//	@return []Message
+//	@return error
+func GetAllUnprocessedNotifications(receiverID uint) ([]Message, error) {
+	messages := make([]Message, 0)
+
+	err := db.Model(&Message{}).
+		Where("receiver_id = ?", receiverID).
+		Where("message_type = ?", constants.FRIEND_REQUEST).
+		Where("have_processed = ?", false).
 		Find(&messages).Error
 
 	if err != nil {

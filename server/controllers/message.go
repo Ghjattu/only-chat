@@ -49,3 +49,40 @@ func CreateNewMessage(c *fiber.Ctx) error {
 		Data:    m.ID,
 	})
 }
+
+func DeleteMessageByID(c *fiber.Ctx) error {
+	id, err := getID(c, "id")
+	if err != nil {
+		return utils.ErrorHandler(c, err)
+	}
+
+	if err := models.DeleteMessageByID(id); err != nil {
+		return utils.ErrorHandler(c, err)
+	}
+
+	return c.JSON(utils.Response{
+		Success: true,
+		Code:    fiber.StatusOK,
+		Message: "success",
+		Data:    nil,
+	})
+}
+
+func GetAllUnprocessedNotifications(c *fiber.Ctx) error {
+	receiverID, err := getID(c, "receiver_id")
+	if err != nil {
+		return utils.ErrorHandler(c, err)
+	}
+
+	messages, err := models.GetAllUnprocessedNotifications(receiverID)
+	if err != nil {
+		return utils.ErrorHandler(c, err)
+	}
+
+	return c.JSON(utils.Response{
+		Success: true,
+		Code:    fiber.StatusOK,
+		Message: "success",
+		Data:    messages,
+	})
+}
