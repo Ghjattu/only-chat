@@ -90,7 +90,7 @@ func UpdateLastMessageAndUnreadCount(message *Message) error {
 
 		// Update the chat relationship of the sender.
 		err = tx.Model(&ChatRel{}).
-			Where("user_id = ? AND friend_id = ?", message.FromID, message.ToID).
+			Where("user_id = ? AND friend_id = ?", message.SenderID, message.ReceiverID).
 			Updates(updateColumns).Error
 		if err != nil {
 			return err
@@ -99,7 +99,7 @@ func UpdateLastMessageAndUnreadCount(message *Message) error {
 		// Update the chat relationship of the receiver.
 		cr := &ChatRel{}
 		err = tx.Model(&ChatRel{}).
-			Where("user_id = ? AND friend_id = ?", message.ToID, message.FromID).
+			Where("user_id = ? AND friend_id = ?", message.ReceiverID, message.SenderID).
 			First(cr).Error
 		if err != nil {
 			// If the chat relationship of the receiver does not exist,
@@ -107,9 +107,9 @@ func UpdateLastMessageAndUnreadCount(message *Message) error {
 			if err == gorm.ErrRecordNotFound {
 				// Get the username of the sender.
 				sender := &User{}
-				err = tx.Model(&User{}).Where("id = ?", message.FromID).First(sender).Error
+				err = tx.Model(&User{}).Where("id = ?", message.SenderID).First(sender).Error
 				if err == nil {
-					updateColumns["user_id"] = message.ToID
+					updateColumns["user_id"] = message.ReceiverID
 					updateColumns["friend_id"] = sender.ID
 					updateColumns["friend_username"] = sender.Username
 					updateColumns["unread_count"] = 1
@@ -124,7 +124,7 @@ func UpdateLastMessageAndUnreadCount(message *Message) error {
 			updateColumns["unread_count"] = cr.UnreadCount + 1
 
 			err = tx.Model(&ChatRel{}).
-				Where("user_id = ? AND friend_id = ?", message.ToID, message.FromID).
+				Where("user_id = ? AND friend_id = ?", message.ReceiverID, message.SenderID).
 				Updates(updateColumns).Error
 		}
 

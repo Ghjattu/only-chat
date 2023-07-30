@@ -10,8 +10,8 @@ import (
 type Message struct {
 	gorm.Model
 	MessageType   uint      `json:"msg_type"`
-	FromID        uint      `json:"from_id" gorm:"index"`
-	ToID          uint      `json:"to_id"`
+	SenderID      uint      `json:"sender_id" gorm:"index"`
+	ReceiverID    uint      `json:"receiver_id"`
 	Timestamp     time.Time `json:"timestamp"`
 	Content       string    `json:"content"`
 	HaveRead      bool      `json:"have_read"`
@@ -46,8 +46,8 @@ func GetMessagesByUserID(user_id, friend_id uint) ([]Message, error) {
 	messages := make([]Message, 0)
 
 	err := db.Model(&Message{}).
-		Where("from_id = ? AND to_id = ?", user_id, friend_id).
-		Or("from_id = ? AND to_id = ?", friend_id, user_id).
+		Where("sender_id = ? AND receiver_id = ?", user_id, friend_id).
+		Or("sender_id = ? AND receiver_id = ?", friend_id, user_id).
 		Find(&messages).Error
 
 	if err != nil {
@@ -76,7 +76,7 @@ func GetAllUnprocessedNotifications(receiverID uint) ([]Message, error) {
 	messages := make([]Message, 0)
 
 	err := db.Model(&Message{}).
-		Where("to_id = ?", receiverID).
+		Where("receiver_id = ?", receiverID).
 		Where("message_type = ?", constants.FRIEND_REQUEST).
 		Where("have_processed = ?", false).
 		Find(&messages).Error

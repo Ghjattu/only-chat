@@ -78,7 +78,7 @@ func (hub *Hub) DistributeMessage(message *models.Message) {
 	// If the receiving client of the message is online,
 	// then send the message over the websocket connection.
 	for client := range hub.OnlineClients {
-		if client.ID == message.ToID {
+		if client.ID == message.ReceiverID {
 			client.Conn.WriteJSON(message)
 
 			return
