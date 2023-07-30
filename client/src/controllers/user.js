@@ -1,5 +1,5 @@
 import axios from 'axios';
-import messageTypes from '../constants.js';
+import messageTypes from './constants.js';
 import websocket from './ws.js';
 
 const baseUrl = 'http://localhost:8080/api/v1';
@@ -34,8 +34,8 @@ const getUsersByKey = async (key) => {
 const sendFriendRequest = (senderID, receiverID) => {
 	const msg = {
 		msg_type: messageTypes.FRIEND_REQUEST,
-		from_id: senderID,
-		to_id: receiverID,
+		sender_id: senderID,
+		receiver_id: receiverID,
 		timestamp: (new Date()).toISOString(),
 		content: '',
 	};
