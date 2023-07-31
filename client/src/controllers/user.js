@@ -31,10 +31,11 @@ const getUsersByKey = async (key) => {
 	}
 };
 
-const sendFriendRequest = (senderID, receiverID) => {
+const sendFriendRequest = (senderID, senderUsername, receiverID) => {
 	const msg = {
 		msg_type: messageTypes.FRIEND_REQUEST,
 		sender_id: senderID,
+		sender_username: senderUsername,
 		receiver_id: receiverID,
 		timestamp: (new Date()).toISOString(),
 		content: '',

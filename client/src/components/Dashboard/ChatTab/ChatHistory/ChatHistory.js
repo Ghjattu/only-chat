@@ -40,6 +40,7 @@ const ChatHistory = (props) => {
 			const currentTimestamp = new Date();
 			const msg = messageControllers.sendPrivateMessage(
 				user.user_id,
+				user.username,
 				props.chat.friend_id,
 				currentTimestamp,
 				inputMsg

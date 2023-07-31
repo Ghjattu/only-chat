@@ -26,7 +26,7 @@ const DiscoverTab = () => {
 	};
 
 	const handleButtonClick = (receiverID) => {
-		userControllers.sendFriendRequest(user.user_id, receiverID);
+		userControllers.sendFriendRequest(user.user_id, user.username, receiverID);
 	};
 
 	const resultList = searchResults.map(user =>
