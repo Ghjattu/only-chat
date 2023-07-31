@@ -33,3 +33,7 @@
 	color: rgba(255, 255, 255, .9);
 	background: rgba(49, 139, 230, 1);
 }
+
+.chat-input {
+	margin: auto 0 0;
+}
