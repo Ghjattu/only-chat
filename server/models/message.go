@@ -9,13 +9,14 @@ import (
 
 type Message struct {
 	gorm.Model
-	MessageType   uint      `json:"msg_type"`
-	SenderID      uint      `json:"sender_id" gorm:"index"`
-	ReceiverID    uint      `json:"receiver_id"`
-	Timestamp     time.Time `json:"timestamp"`
-	Content       string    `json:"content"`
-	HaveRead      bool      `json:"have_read"`
-	HaveProcessed bool      `json:"have_processed"`
+	MessageType    uint      `json:"msg_type"`
+	SenderID       uint      `json:"sender_id" gorm:"index"`
+	SenderUsername string    `json:"sender_username"`
+	ReceiverID     uint      `json:"receiver_id"`
+	Timestamp      time.Time `json:"timestamp"`
+	Content        string    `json:"content"`
+	HaveRead       bool      `json:"have_read"`
+	HaveProcessed  bool      `json:"have_processed"`
 }
 
 // BeforeCreate is a gorm hook that modifies the timestamp to local time.
