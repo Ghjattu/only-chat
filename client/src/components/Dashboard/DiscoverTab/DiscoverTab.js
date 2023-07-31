@@ -50,7 +50,9 @@ const DiscoverTab = () => {
 			</div>
 
 			<div className="discover-tab-content">
-				{resultList}
+				<div className='discover-tab-list'>
+					{resultList}
+				</div>
 			</div>
 		</div>
 	);
