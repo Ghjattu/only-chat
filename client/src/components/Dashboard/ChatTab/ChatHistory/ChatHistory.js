@@ -5,7 +5,6 @@ import { UserContext } from '../../../../contexts/userContext';
 import messageControllers from '../../../../controllers/message';
 import { useImmer } from 'use-immer';
 import TextField from '@mui/material/TextField';
-import websocket from '../../../../controllers/ws.js';
 
 const ChatHistory = (props) => {
 	const user = useContext(UserContext);
@@ -39,13 +38,13 @@ const ChatHistory = (props) => {
 	const handleInputKeyDown = (event) => {
 		if (event.key === 'Enter') {
 			const currentTimestamp = new Date();
-			const msg = {
-				from_id: user.user_id,
-				to_id: props.chat.friend_id,
-				timestamp: currentTimestamp.toISOString(),
-				content: inputMsg,
-			};
-			websocket.sendMsg(JSON.stringify(msg));
+			const msg = messageControllers.sendPrivateMessage(
+				user.user_id,
+				user.username,
+				props.chat.friend_id,
+				currentTimestamp,
+				inputMsg
+			);
 
 			msg.timestamp = currentTimestamp.toString();
 			props.UpdateLastMsg(msg);
@@ -58,7 +57,7 @@ const ChatHistory = (props) => {
 
 	const messageList = chatHistory.map(message => {
 		let className = 'history-message ';
-		if (message.from_id == user.user_id) {
+		if (message.sender_id == user.user_id) {
 			className += 'right';
 		}
 

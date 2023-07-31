@@ -42,6 +42,10 @@
 
 .chat-tab-list {
 	grid-area: list;
+
+	overflow: scroll;
+
+	margin: 10px 0 0;
 }
 
 .chat-tab-history {

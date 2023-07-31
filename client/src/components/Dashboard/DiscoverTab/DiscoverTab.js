@@ -26,7 +26,7 @@ const DiscoverTab = () => {
 	};
 
 	const handleButtonClick = (receiverID) => {
-		userControllers.sendFriendRequest(user.user_id, receiverID);
+		userControllers.sendFriendRequest(user.user_id, user.username, receiverID);
 	};
 
 	const resultList = searchResults.map(user =>
@@ -50,7 +50,9 @@ const DiscoverTab = () => {
 			</div>
 
 			<div className="discover-tab-content">
-				{resultList}
+				<div className='discover-tab-list'>
+					{resultList}
+				</div>
 			</div>
 		</div>
 	);

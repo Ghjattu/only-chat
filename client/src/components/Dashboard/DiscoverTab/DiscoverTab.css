@@ -13,11 +13,18 @@
 .discover-tab-content {
 	overflow: scroll;
 
+	padding: 0 13px 0 0;
+}
+
+.discover-tab-list {
+	overflow: scroll;
+
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	row-gap: 12px;
 	column-gap: 20px;
 }
+
 
 .request-button {
 	grid-row: 1 /span 2;

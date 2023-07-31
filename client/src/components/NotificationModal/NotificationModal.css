@@ -1,0 +1,22 @@
+.notifications-wrapper {
+	overflow: scroll;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	border-radius: 5px;
+	padding: 8px;
+	width: 400px;
+	max-height: 600px;
+
+	background: white;
+
+	transform: translate(-50%, -50%);
+}
+
+.button-group {
+	grid-row: 1 / span 2;
+	grid-column: 3 / span 1;
+	justify-self: end;
+}

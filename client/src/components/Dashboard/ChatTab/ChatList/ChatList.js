@@ -11,7 +11,8 @@ const ChatList = (props) => {
 		const now = new Date();
 
 		if (msgDate.getDate() === now.getDate()) {  // if today
-			return msgDate.getHours() + ':' + msgDate.getMinutes();
+			const minutes = msgDate.getMinutes() < 10 ? '0' + msgDate.getMinutes() : msgDate.getMinutes();
+			return msgDate.getHours() + ':' + minutes;
 		} else if ((now - msgDate) <= 24 * 60 * 60 * 1000) {  // if yesterday
 			return 'Yesterday';
 		} else {  // if more than 2 days ago

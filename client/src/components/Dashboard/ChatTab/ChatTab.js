@@ -29,7 +29,7 @@ const ChatTab = (props) => {
 
 	const UpdateLastMsg = (msg) => {
 		setFilteredChatList(draft => {
-			const index = draft.findIndex(chat => chat.friend_id === msg.to_id);
+			const index = draft.findIndex(chat => chat.friend_id === msg.receiver_id);
 			draft[index].last_msg = msg.content;
 			draft[index].last_msg_date = msg.timestamp;
 		});

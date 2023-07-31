@@ -15,11 +15,19 @@ const connect = (id, chatid, username) => {
 	socket.onclose = () => {
 		console.log('connection closed');
 	};
+
+	socket.onerror = (err) => {
+		console.log(err);
+	};
 };
 
 const sendMsg = (msg) => {
 	socket.send(msg);
 };
 
-const websocket = { connect, sendMsg };
+const getSocketState = () => {
+	return socket.readyState;
+};
+
+const websocket = { connect, sendMsg, getSocketState };
 export default websocket;
