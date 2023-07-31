@@ -6,10 +6,11 @@ import Menu from './Menu/Menu.js';
 import StatusBar from './StatusBar/StatusBar.js';
 import ChatTab from './ChatTab/ChatTab.js';
 import FriendTab from './FriendTab/FriendTab.js';
-import { UserContext } from '../../contexts/userContext';
-import chatControllers from '../../controllers/chat';
-import friendControllers from '../../controllers/friend';
-import DiscoverTab from './DiscoverTab/DiscoverTab';
+import { UserContext } from '../../contexts/userContext.js';
+import chatControllers from '../../controllers/chat.js';
+import friendControllers from '../../controllers/friend.js';
+import DiscoverTab from './DiscoverTab/DiscoverTab.js';
+import messageControllers from '../../controllers/message.js';
 
 const Dashboard = () => {
 	const user = useContext(UserContext);
@@ -17,6 +18,7 @@ const Dashboard = () => {
 	const [tabIndex, setTabIndex] = useState(0);
 	const [chatList, setChatList] = useImmer([]);
 	const [friendList, setFriendList] = useState([]);
+	const [notifications, setNotifications] = useImmer([]);
 
 	// Get chat list and friends list.
 	useEffect(() => {
@@ -29,6 +31,11 @@ const Dashboard = () => {
 			res = await friendControllers.getAllFriends(user.user_id);
 			if (res.code === 200) {
 				setFriendList(res.data);
+			}
+
+			res = await messageControllers.getAllNotifications(user.user_id);
+			if (res.code === 200) {
+				setNotifications(res.data);
 			}
 		})();
 	}, []);
@@ -70,7 +77,7 @@ const Dashboard = () => {
 
 			<div className='dashboard-main'>
 				<div className='main-wrapper'>
-					<StatusBar />
+					<StatusBar notifications={notifications} />
 
 					{tabIndex == 0 && <ChatTab chatList={chatList} />}
 					{tabIndex == 1 &&
