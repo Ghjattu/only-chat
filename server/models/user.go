@@ -2,16 +2,12 @@ package models
 
 import (
 	"html"
-	"strconv"
+	"server/middleware/redis"
 	"strings"
 
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
-
-// Each user is assigned a unique ChatID,
-// and the ChatID is increased by 1 each time.
-var chatID int = 100000
 
 type User struct {
 	gorm.Model
@@ -36,7 +32,7 @@ func (u *User) BeforeCreate(tx *gorm.DB) error {
 		return err
 	}
 
-	u.ChatID = strconv.Itoa(chatID)
+	u.ChatID = redis.GetChatIDFromPool()
 	u.Username = html.EscapeString(strings.TrimSpace(u.Username))
 	u.Password = string(hashedPassword)
 
@@ -53,9 +49,6 @@ func CreateNewUser(user *User) (*APIUser, error) {
 	if err != nil {
 		return &APIUser{}, err
 	}
-
-	// If a new user is created successfully, then increase the chatID.
-	chatID++
 
 	returnedUser := &APIUser{
 		ID:       user.ID,
@@ -130,4 +123,19 @@ func GetUserByChatID(chatID string, omitPassword bool) (*APIUser, string, error)
 		return returnedUser, "", nil
 	}
 	return returnedUser, user.Password, nil
+}
+
+// GetAllChatIDs retrieves all chat IDs.
+//
+//	@return []string
+//	@return error
+func GetAllChatIDs() ([]string, error) {
+	var chatIDs []string
+
+	err := db.Model(&User{}).Pluck("chat_id", &chatIDs).Error
+	if err != nil {
+		return []string{}, err
+	}
+
+	return chatIDs, nil
 }
