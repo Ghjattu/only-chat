@@ -1,6 +1,8 @@
 package models
 
 import (
+	"server/middleware/redis"
+
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -17,4 +19,13 @@ func init() {
 	db = d
 
 	db.AutoMigrate(&User{}, &Message{}, &FriendRel{}, &ChatRel{})
+
+	redis.InitRdb()
+
+	chatIDs, err := GetAllChatIDs()
+	if err == nil {
+		redis.Rdb.SAdd(redis.Ctx, "exist_chat_ids", chatIDs)
+	}
+
+	go redis.ListenForChatIDPoolChange()
 }
